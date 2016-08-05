@@ -1,0 +1,54 @@
+<!--build header-->
+<include src="../assets/layout/header.html"
+         title="日期组件">
+</include>
+
+<style>
+    #date{
+        display: block;
+        width: 300px;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 10px;
+        margin: 20px auto;
+        border: solid 1px #D4D4D4;
+        color: #505050;
+        font-size: 14px;
+    }
+    #date:focus{ box-shadow: inset 0 0 2px 0 #C5EDFF; }
+    #date::-webkit-input-placeholder{ color: #848383; }
+</style>
+    <input type="text" id="date" value="" placeholder="请选择日期" readonly/>
+    <include src="../assets/components/SYDatePicker/index.html" id="sy-date-picker"></include>
+
+    <script>
+        $(function(){
+            var $date = $('#date');
+            var date = SYDatePicker.format(Date.now(), 'YYYY-mm-dd');
+            //var date = SYDatePicker.formatCN(Date.now(), 'YYYY-mm-dd');
+            $date.val(date);
+
+            var syDatePicker;
+            syDatePicker = new SYDatePicker('#date', {
+                onSelectDay: function(date){ console.log(date); },
+                onSelectYear: function(year){ console.log(year); },
+                //maxDate: new Date('2016/8/28'),
+                //minDate: new Date('2016/7/28'),
+                showTime: true,
+                //格式化
+                format: 'YYYY-mm-dd'
+                //格式化为中文
+                //formatCN: 'YYYY-m-d'
+            });
+            $date.click(function(evt){
+                evt.stopPropagation();
+                syDatePicker.open();
+            });
+
+        });
+    </script>
+
+<!--build footer-->
+<include src="../assets/layout/footer.html"
+         view="">
+</include>

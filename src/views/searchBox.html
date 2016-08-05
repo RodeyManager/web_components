@@ -1,0 +1,22 @@
+<!--build header-->
+<include src="../assets/layout/header.html"
+         title="searchBox">
+</include>
+
+    <include src="../assets/components/searchBox/index.html" id="search-box"></include>
+
+    <script>
+        $(function(){
+            var searchBox = new SearchBox('search-box');
+            searchBox.search(function(text){
+                console.log(text);
+                //console.log(this);
+                //在这里发送请求...
+            });
+        });
+    </script>
+
+<!--build footer-->
+<include src="../assets/layout/footer.html"
+         view="">
+</include>

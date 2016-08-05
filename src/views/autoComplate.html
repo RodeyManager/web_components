@@ -1,0 +1,29 @@
+<!--build header-->
+<include src="../assets/layout/header.html"
+         title="自动完成">
+</include>
+
+    <div style="margin: 50px auto; text-align: center">
+        <include src="../assets/components/autoComplate/index.html" id="autocomplate-email"></include>
+    </div>
+
+    <script>
+        $(function(){
+            var emails = [
+                '@gmail.com',
+                '@sina.com.cn',
+                '@qq.com',
+                '@163.com',
+                '@126.com'
+            ];
+            //var words = ['.html', '.css', '.js', '.ts', '.java', '.php', '.jsp', '.rb', '.py', '.txt'];
+            var emailAutoComplate = new AutoComplate('#autocomplate-email', {
+                data: emails
+            });
+        });
+    </script>
+
+<!--build footer-->
+<include src="../assets/layout/footer.html"
+         view="">
+</include>

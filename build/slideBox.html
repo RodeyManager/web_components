@@ -1,0 +1,470 @@
+<!--build header-->
+<!DOCTYPE html>
+<html class="" style="">
+<head lang="en">
+    <title>searchBox</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="descriptions" charset="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link href="assets/css/app.min.css?_cmbx_=8df2534682" rel="stylesheet" media="screen">
+    <script src="assets/js/libs.js?_cmbx_=416ee13b71"></script>
+</head>
+<body class="" style="">
+
+    <style type="text/css" charset="utf-8">.slide-box{
+    width: 278px;
+    padding: 0;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+.slide-box .slide-list{
+    width: auto;
+    min-width: 100%;
+    -webkit-transition: all 0.35s ease;
+    -moz-transition: all 0.35s ease;
+    -ms-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+.slide-box .slide-list:after{
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    zoom: 1;
+    clear: both;
+}
+.slide-box .slide-list > li{
+    display: block;
+    width: 278px;
+    float: left;
+}
+.slide-box .slide-list .slide-title{
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+}
+.slide-box .slide-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    color: #3aaaf8;
+    text-align: center;
+    font-size: 30px;
+    font-family: monospace;
+    font-weight: bold;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+.slide-box .slide-btn.disabled{
+    color: #C3C3C3;
+    pointer-events: none;
+}
+.slide-box .slide-btn.slide-prev{
+    left: 0;
+    text-align: left;
+}
+.slide-box .slide-btn.slide-next{
+    right: 0;
+    text-align: right;
+}
+.slide-box .slide-btn:hover,
+.slide-box .slide-btn:active{
+    color: #0096FF;
+    text-shadow: 0 1px 1px #B8E2FF, 0 -1px 1px #B8E2FF;
+}
+.slide-box .slide-index-btns{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.slide-box .slide-index-btns > li{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 10px;
+    background-color: rgba(255,255,255,.7);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+.slide-box .slide-index-btns > li:hover,
+.slide-box .slide-index-btns > li:active,
+.slide-box .slide-index-btns > li.active{
+    background-color: #57B4FF;
+    box-shadow: 0 0 1px 1px #91DDFF;
+}</style>
+    <!--<includer src="style.css"></include>-->
+<div class="slide-box" id="slide-box">
+    <ul class="slide-list">
+        <!--<li>-->
+            <!--<span class="slide-title">电销精英召集令</span>-->
+            <!--<a href=""><img src="http://www.cignacmb.com/sites/default/themes/cigna_cmc/images/banner_20150430_02.jpg" alt="电销精英召集令"/></a>-->
+        <!--</li>-->
+    </ul>
+    <div class="slide-btns">
+        <span class="slide-btn slide-prev disabled">&lt;</span>
+        <span class="slide-btn slide-next">&gt;</span>
+        <ul class="slide-index-btns"></ul>
+    </div>
+</div>
+<script type="text/html" id="slide-item-tpl">
+    <%
+    if(data){
+        each(data, function(item){
+    %>
+    <li>
+        <span class="slide-title"><%= item.title %></span>
+        <a href="<%= item.link %>"><img src="<%= item.src %>" alt="<%= item.title %>"/></a>
+    </li>
+    <% }); } %>
+</script>
+<!--<includer src="index.js"></include>-->
+    <!--<includer src="style.css"></include>-->
+<div class="slide-box" id="slide-box-vertical">
+    <ul class="slide-list">
+        <!--<li>-->
+            <!--<span class="slide-title">电销精英召集令</span>-->
+            <!--<a href=""><img src="http://www.cignacmb.com/sites/default/themes/cigna_cmc/images/banner_20150430_02.jpg" alt="电销精英召集令"/></a>-->
+        <!--</li>-->
+    </ul>
+    <div class="slide-btns">
+        <span class="slide-btn slide-prev disabled">&lt;</span>
+        <span class="slide-btn slide-next">&gt;</span>
+        <ul class="slide-index-btns"></ul>
+    </div>
+</div>
+<script type="text/html" id="slide-item-tpl">
+    <%
+    if(data){
+        each(data, function(item){
+    %>
+    <li>
+        <span class="slide-title"><%= item.title %></span>
+        <a href="<%= item.link %>"><img src="<%= item.src %>" alt="<%= item.title %>"/></a>
+    </li>
+    <% }); } %>
+</script>
+<!--<includer src="index.js"></include>-->
+    <script type="text/javascript" charset="utf-8" defer>/**
+ * Created by r9luox on 2016/7/1.
+ */
+
+;(function(){
+
+    var root = this,
+        isTouch = 'ontouchstart' in window,
+        defaults = {
+            //容器宽度
+            width: 278,
+            //容器高度，垂直滚动时用
+            height: 0,
+            //是否自动滚动
+            autoPlay: true,
+            //间隔时间
+            delay: 3,
+            //滚动动画持续时长
+            duration: 350,
+            //是否显示索引按钮
+            showIndexBtns: true,
+            //滚动方向
+            direction: 'horizontal' //默认横向 vertical: 纵向
+        };
+
+    $(function(){
+
+        var SlideBox = function(eid, opts){
+            this.box = $(eid);
+            this.listBox = this.box.find('.slide-list');
+            this.prevBtn = this.box.find('.slide-prev');
+            this.nextBtn = this.box.find('.slide-next');
+            this._btns = this.box.find('.slide-btn');
+            this.options = $.extend({}, defaults, opts);
+            this.data = this.options.data;
+            this.width = this.options.width;
+            this.height = this.options.height;
+            this.index = 0;
+            this._stin = null;
+            this._stim = null;
+            this.isClick = false;
+            this._init();
+        };
+
+        SlideBox.prototype = {
+            _init: function(){
+                //根据数据长度设置列表容器宽度
+                this.setListBoxWidth();
+                //渲染列表
+                this.render(this.data);
+                //开始播放切换
+                this.options.autoPlay && this.play();
+                //是否显示按钮索引
+                this.options.showIndexBtns && this._createIndexBtns();
+                //按钮控制
+                this._addBtnEvent();
+            },
+            setListBoxWidth: function(){
+                if(!this.data || !this.data.length || 0 === this.data.length)   return;
+                this.options.direction == 'horizontal' && this.listBox.css('width', this.width * this.data.length);
+                this.options.direction == 'vertical' && this.box.css({ 'width': this.width, 'height': this.height});
+            },
+            render: function(data){
+                var html = SYST.T.render('slide-item-tpl', { data: data || this.data });
+                this.listBox.html(html);
+            },
+            play: function(){
+                var self = this;
+                if(this.isClick || !this.options.autoPlay)    return;
+                this._stin = setInterval(function(){
+                    self.index++;
+                    if(self.index >= self.data.length){
+                        self.index = 0;
+                    }
+                    self.setDisabled();
+                    self.setIndexBtns();
+                    self.translate(-self.index * self.width, -self.index * self.height, 0, self.options.duration);
+                }, this.options.delay * 1000);
+            },
+            stop: function(){
+                clearInterval(this._stin);
+            },
+            translate: function(x, y, z, duration){
+                this.options.direction == 'vertical' && (x = 0);
+                this.options.direction == 'horizontal' && (y = 0);
+                var translate3d = 'translate3d('+ x +'px,'+ y +'px,'+ z +'px)';
+                this._transition(duration);
+                this.listBox.css({
+                    '-webkit-transform': translate3d,
+                    '-moz-transform': translate3d,
+                    '-ms-transform': translate3d,
+                    'transform': translate3d
+                });
+            },
+            _transition: function(duration){
+                duration = duration + 'ms';
+                this.listBox.css({
+                    '-webkit-transition-duration': duration,
+                    '-moz-transition-duration': duration,
+                    '-ms-transition-duration': duration,
+                    'transition-duration': duration
+                });
+            },
+            _getTranslate: function(){
+                var tranform = this.listBox[0].style['transform' || 'WebkitTransform' || 'MozTransform' || 'msTransform'];
+                tranform = tranform.replace(/\(|\)|translate(3d)+?/gi, '').match(/(-*\d+)+?/gi);
+                return tranform;
+            },
+            setIndexBtns: function(){
+                if(this.options.showIndexBtns){
+                    this.indexBtnsBox.find('li').removeClass('active');
+                    this.indexBtnsBox.find('li:eq('+ this.index +')').addClass('active');
+                }
+            },
+            _play: function(){
+                var self = this;
+                this.setDisabled();
+                self.setIndexBtns();
+                this.translate(-this.index * this.width, -this.index * this.height, 0, this.options.duration);
+                this._stim = setTimeout(function(){
+                    clearTimeout(self._stim);
+                    self.isClick = false;
+                    self.play();
+                }, 350);
+
+            },
+            _addBtnEvent: function(){
+                var self = this;
+                this._btns.click(function(){
+                    if($(this).hasClass('disabled'))    return;
+                    self.stop();
+                    self.isClick = true;
+                    if($(this).hasClass('slide-prev')){
+                        //上一页
+                        self.index--;
+                    }else{
+                        //下一页
+                        self.index++;
+                    }
+                    if(self.index < 0 || self.index >= self.data.length)  self.index = 0;
+                    self._play();
+                });
+                if(isTouch){
+                    this.box.on('touchstart', $.proxy(this, '_onStart'));
+                }
+            },
+            _onStart: function(evt){
+                var $target = $(evt.target);
+                if($target.attr('data-index') || $target.hasClass('slide-btn')) return;
+                evt = this._getEvent(evt);
+                this.box.on('touchmove', $.proxy(this, '_onMove'));
+                this.box.on('touchend', $.proxy(this, '_onEnd'));
+                this._startPosition = {
+                    x: evt.clientX,
+                    y: evt.clientY
+                };
+                this._startTime = (new Date()).getTime();
+                var transform = this._getTranslate();
+                this._left = transform && parseFloat(transform[0], 10) || 0;
+                this._top = transform && parseFloat(transform[1], 10) || 0;
+                this.translate(this._left, this._top, 0, 0);
+                this.isClick = true;
+                this.stop();
+            },
+            _onMove: function(evt){
+                evt = this._getEvent(evt);
+                this.isClick = true;
+                this.stop();
+                var offset = {
+                        x: evt.clientX - this._startPosition.x,
+                        y: evt.clientY - this._startPosition.y
+                    };
+                this.translate(this._left + offset.x, this._top + offset.y, 0, 0);
+            },
+            _onEnd: function(evt){
+                this.box.off('touchmove', $.proxy(this, '_onMove'));
+                this.box.off('touchend', $.proxy(this, '_onEnd'));
+                evt = this._getEvent(evt);
+                this.isClick = true;
+                this.stop();
+                var offset = {
+                        x: evt.clientX - this._startPosition.x,
+                        y: evt.clientX - this._startPosition.y
+                    },
+                    offsetTime = (new Date()).getTime() - this._startTime;
+                if((Math.abs(offset.x) > this.width * .5 || Math.abs(offset.y) > this.height * .5)
+                    || (offsetTime > 100 && offsetTime < 300)){
+                    if(offset.x < 0 || offset.y < 0)  {
+                        this.index++;
+                    }
+                    else if(offset.x > 0 || offset.y > 0) {
+                        this.index--;
+                    }
+                    if(this.index < 0 || this.index >= this.data.length)  this.index = 0;
+                    this._play();
+                }else{
+                    this._play();
+                }
+
+            },
+            //MouseEvent || TouchEvent
+            _getEvent: function(evt){
+                return isTouch ? evt.originalEvent.changedTouches[0] : evt;
+            },
+            setDisabled: function(){
+                if(this.index <= 0){
+                    this._setDisabled(this.prevBtn);
+                }
+                else if(this.index == this.data.length - 1){
+                    this._setDisabled(this.nextBtn);
+                }
+                else{
+                    this._setDisabled();
+                }
+            },
+            _setDisabled: function($el){
+                this._btns.removeClass('disabled');
+                $el && $el.addClass('disabled');
+            },
+            _createIndexBtns: function(){
+                var self = this, btnsStr = '';
+                this.indexBtnsBox = this.box.find('.slide-index-btns');
+                for(var i = 0, len = this.data.length; i < len; ++i){
+                    btnsStr += '<li class="'+ (i == this.index ? 'active' : '') +'" data-index="'+ i +'"></li>';
+                }
+                this.indexBtnsBox.html(btnsStr);
+                this.indexBtnsBox.delegate('li', 'click', function(evt){
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    self.isClick = true;
+                    self.indexBtnsBox.find('li').removeClass('active');
+                    $(this).addClass('active');
+                    self.index = this.getAttribute('data-index');
+                    self.stop();
+                    self._play();
+                });
+            }
+        };
+
+        root.SlideBox = SlideBox;
+
+    });
+
+}).call(this);
+</script>
+
+    <script>
+        $(function(){
+            var data = [
+                {
+                    title: '电销精英召集令',
+                    src: 'http://www.cignacmb.com/sites/default/themes/cigna_cmc/images/banner_20150430_02.jpg',
+                    link: 'http://www.cignacmb.com'
+                },
+                {
+                    title: '微电影"爸爸的味道"',
+                    src: 'http://www.cignacmb.com/sites/default/themes/cigna_cmc/cignacmb/images/index/video_01.jpg',
+                    link: 'http://www.cignacmb.com/campaign/weidianying.html'
+                },
+                {
+                    title: '幸福方程式',
+                    src: 'http://www.cignacmb.com/sites/default/themes/cigna_cmc/cignacmb/images/index/video_02.jpg',
+                    link: 'http://www.cignacmb.com/shop/huodong/jjcc.html'
+                },
+                {
+                    title: '我为招商信诺代言',
+                    src: 'http://www.cignacmb.com/sites/default/themes/cigna_cmc/cignacmb/images/index/box_video010.jpg',
+                    link: 'http://www.cignacmb.com'
+                },
+                {
+                    title: '大病有钱治 没病还你钱',
+                    src: 'http://www.cignacmb.com/sites/default/themes/cigna_cmc/cignacmb/images/index/box_video.jpg',
+                    link: 'http://www.cignacmb.com'
+                }
+            ];
+            var hslideBox = new SlideBox('#slide-box', {
+                data: data,
+                autoPlay: false
+            });
+
+            var vslideBox = new SlideBox('#slide-box-vertical', {
+                height: 240,
+                data: data,
+                direction: 'vertical'
+            });
+        });
+    </script>
+
+<!--build footer-->
+    <!--server loading-->
+    <div class="server-loading loading" id="request-tip" style="display: none;"></div>
+
+    <!--载入js-->
+    <script src="modules/main.js?_cmbx_=94d8986763"></script>
+    
+
+</body>
+</html>

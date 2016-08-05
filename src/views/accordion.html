@@ -1,0 +1,61 @@
+<!--build header-->
+<include src="../assets/layout/header.html"
+         title="折叠面板">
+</include>
+
+    <include src="../assets/components/accordion/style-v.css"></include>
+    <include src="../assets/components/accordion/style-h.css"></include>
+
+    <div style="position: absolute;margin: 50px;">
+        <include src="../assets/components/accordion/index-v.html" id="accordion-v" class="accordion-v"></include>
+    </div>
+    <div style="position: absolute; left: 300px;margin: 50px;">
+        <include src="../assets/components/accordion/index-h.html" id="accordion-h" class="accordion-h"></include>
+    </div>
+
+    <include src="../assets/components/accordion/index.js"></include>
+
+    <script>
+        $(function(){
+
+            var stim;
+
+            var accordionV = new Accordion('accordion-v', {
+                direction: 'vertical',
+                index: 0,
+                onSwitchStart: function(){
+                    if(this.index == 2){
+                        this.contentBoxs.eq(this.index - 1).find('div').html('<img src="http://img.lanrentuku.com/img/allimg/1212/5-121204193955-50.gif" alt=""/>');
+                    }
+                    //阻止切换
+                    if(this.index == 4)
+                        return false;
+                },
+                onSwitchEnd: function(){
+                    //console.log(this.index);
+                    window.clearTimeout(stim);
+                    if(this.index == 2){
+                        $.get('assets/mockData/test.json', {}, function(res){
+                            this.contentBoxs.eq(this.index - 1).find('div').html(res.data);
+                        }.bind(this));
+                    }
+                }
+            });
+
+            var accordionH = new Accordion('accordion-h', {
+                direction: 'horizontal',
+                index: 3,
+                duration: 3,        //切换间隔
+                switchWidth: 450,   //伸缩的宽度，为内容宽度
+                autoPlay: true,    //是否自动切换
+                clickActive: false, //点击切换
+                hoverActive: true
+            });
+
+        });
+    </script>
+
+<!--build footer-->
+<include src="../assets/layout/footer.html"
+         view="">
+</include>

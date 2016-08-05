@@ -1,0 +1,26 @@
+<!--<includer src="style.css"></include>-->
+<div class="slide-box" id="{{ @id }}">
+    <ul class="slide-list">
+        <!--<li>-->
+            <!--<span class="slide-title">电销精英召集令</span>-->
+            <!--<a href=""><img src="http://www.cignacmb.com/sites/default/themes/cigna_cmc/images/banner_20150430_02.jpg" alt="电销精英召集令"/></a>-->
+        <!--</li>-->
+    </ul>
+    <div class="slide-btns">
+        <span class="slide-btn slide-prev disabled">&lt;</span>
+        <span class="slide-btn slide-next">&gt;</span>
+        <ul class="slide-index-btns"></ul>
+    </div>
+</div>
+<script type="text/html" id="slide-item-tpl">
+    <%
+    if(data){
+        each(data, function(item){
+    %>
+    <li>
+        <span class="slide-title"><%= item.title %></span>
+        <a href="<%= item.link %>"><img src="<%= item.src %>" alt="<%= item.title %>"/></a>
+    </li>
+    <% }); } %>
+</script>
+<!--<includer src="index.js"></include>-->

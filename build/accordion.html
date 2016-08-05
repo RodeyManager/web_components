@@ -1,0 +1,414 @@
+<!--build header-->
+<!DOCTYPE html>
+<html class="" style="">
+<head lang="en">
+    <title>折叠面板</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="descriptions" charset="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link href="assets/css/app.min.css?_cmbx_=8df2534682" rel="stylesheet" media="screen">
+    <script src="assets/js/libs.js?_cmbx_=416ee13b71"></script>
+</head>
+<body class="" style="">
+
+    <style type="text/css" charset="utf-8">.accordion-box.accordion-v{
+    width: 200px;
+    margin: 10px auto;
+}
+.accordion-box.accordion-v ul li{
+    display: block;
+    width: 100%;
+}
+.accordion-box.accordion-v ul li > a{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    background-color: #00a1a9;
+    color: white;
+    text-align: center;
+    border-top: solid 1px #13868c;
+}
+.accordion-box.accordion-v ul li > a:after{
+    content: ">";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    font-size: 22px;
+    color: white;
+    font-family: sans sans-serif monospace;
+    -webkit-transform: translateY(-50%) rotate(90deg);
+    -moz-transform: translateY(-50%) rotate(90deg);
+    -ms-transform: translateY(-50%) rotate(90deg);
+    -o-transform: translateY(-50%) rotate(90deg);
+    transform: translateY(-50%) rotate(90deg);
+}
+.accordion-box.accordion-v ul li.active > a:after{
+    content: ">";
+    -webkit-transform: translateY(-50%) rotate(270deg);
+    -moz-transform: translateY(-50%) rotate(270deg);
+    -ms-transform: translateY(-50%) rotate(270deg);
+    -o-transform: translateY(-50%) rotate(270deg);
+    transform: translateY(-50%) rotate(270deg);
+}
+.accordion-box.accordion-v ul li > a.none:after{
+    content: "";
+}
+.accordion-box.accordion-v ul li > a:hover,
+.accordion-box.accordion-v ul li.active > a{
+    background-color: #00D2DC;
+}
+.accordion-box.accordion-v ul li .accordion-content{
+    display: none;
+    background-color: #F4FFFE;
+    overflow: hidden;
+}
+.accordion-box.accordion-v ul li.active .accordion-content{
+    /*display: block;*/
+    /*border-top: solid 1px #75AEB1;*/
+}
+.accordion-box.accordion-v ul li .accordion-content > div a{
+    display: block;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    text-align: center;
+    border-top: solid 1px #9EB4B5;
+}
+.accordion-box.accordion-v ul li .accordion-content > div a:hover{
+    padding-left: 30px;
+    color: #00a1a9;
+    background-color: #C4CAD0;
+}
+.accordion-box.accordion-v ul li > a,
+.accordion-box.accordion-v ul li > a:after,
+.accordion-box.accordion-v ul li .accordion-content > div a{
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}</style>
+    <style type="text/css" charset="utf-8">.accordion-box.accordion-h{
+    height: 200px;
+    margin: 10px auto;
+}
+.accordion-box.accordion-h ul li{
+    display: block;
+    height: 100%;
+    float: left;
+    font-size: 0;
+}
+.accordion-box.accordion-h ul:after,
+.accordion-box.accordion-h ul li:after{
+    content: "";
+    display: block;
+    visibility: hidden;
+    zoom: 1;
+    clear: both;
+}
+.accordion-box.accordion-h ul li > a{
+    position: relative;
+    display: block;
+    float: left;
+    width: 40px;
+    height: 200px;
+    line-height: 20px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #00a1a9;
+    color: white;
+    text-align: center;
+    border-left: solid 1px #13868c;
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    -ms-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+}
+.accordion-box.accordion-h ul li > a:hover,
+.accordion-box.accordion-h ul li.active > a{
+    background-color: #00D2DC;
+}
+.accordion-box.accordion-h ul li .accordion-content{
+    display: none;
+    width: 450px;
+    height: 200px;
+    background-color: #b3b3b3;
+    float: left;
+    overflow: hidden;
+}
+
+.accordion-box.accordion-h ul li .accordion-content > img{
+    display: block;
+    width: 450px;
+    height: 200px;
+}
+
+.accordion-box.accordion-h ul li > a.hot{
+    box-shadow: inset 0 -20px 1px 1px #FF7272;
+}
+.accordion-box.accordion-h ul li > a.hot:after{
+    content: "Hot";
+    color: white;
+    position: absolute;
+    bottom: 0;
+    left: 8px;
+    font-size: 10px;
+}</style>
+
+    <div style="position: absolute;margin: 50px;">
+        <div class="accordion-box accordion-v" id="accordion-v">
+    <ul>
+        <li class="">
+            <a href="javascript:void(0);">选项卡1</a>
+            <div class="accordion-content">
+                <div>
+                    <p>
+                        <a href="javascript:void(0);">子选项1</a>
+                        <a href="javascript:void(0);">子选项2</a>
+                        <a href="javascript:void(0);">子选项3</a>
+                        <a href="javascript:void(0);">子选项4</a>
+                        <a href="javascript:void(0);">子选项5</a>
+                    </p>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a href="javascript:void(0);">选项卡2</a>
+            <div class="accordion-content">
+                <div style="text-align: center">
+                    <img src="http://img.lanrentuku.com/img/allimg/1212/5-121204193955-50.gif" alt=""/>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a href="javascript:void(0);">选项卡3</a>
+            <div class="accordion-content">
+                <img width="250" src="http://www.cignacmb.com/resource/upimg/201605/2016053111151438418.jpg" alt="安享康健重疾保险C款">
+            </div>
+        </li>
+        <li>
+            <a href="http://www.cignacmb.com/" target="_blank" class="none">选项卡4</a>
+        </li>
+        <li>
+            <a href="javascript:void(0);">选项卡5</a>
+            <div class="accordion-content">
+                <img width="250" src="http://www.cignacmb.com/resource/upimg/201605/2016053111185298701.jpg" alt="守护未来儿童教育金(分红型)">
+            </div>
+        </li>
+    </ul>
+</div>
+    </div>
+    <div style="position: absolute; left: 300px;margin: 50px;">
+        <div class="accordion-box accordion-h" id="accordion-h">
+    <ul>
+        <li class="">
+            <a href="javascript:void(0);">重疾险</a>
+            <div class="accordion-content">
+                <img src="http://www.cignacmb.com/sites/default/themes/cigna_cmc/images/20150601_01.jpg" alt="重疾险">
+            </div>
+        </li>
+        <li>
+            <a href="javascript:void(0);">少儿教育金</a>
+            <div class="accordion-content">
+                <img src="http://www.cignacmb.com/sites/default/themes/cigna_cmc/images/banner_20150604_01.jpg" alt="少儿教育金">
+            </div>
+        </li>
+        <li>
+            <a href="javascript:void(0);" class="hot">运筹帷幄</a>
+            <div class="accordion-content">
+                <img src="http://www.cignacmb.com/sites/default/themes/cigna_cmc/images/20150706_01.jpg" alt="运筹帷幄">
+            </div>
+        </li>
+        <li>
+            <a href="javascript:void(0);">暑期亲子活动</a>
+            <div class="accordion-content">
+                <img src="http://www.cignacmb.com/sites/default/themes/cigna_cmc/images/2016061501.jpg" alt="暑期亲子活动">
+            </div>
+        </li>
+        <li>
+            <a href="javascript:void(0);">老友安心防癌保险</a>
+            <div class="accordion-content">
+                <img src="http://www.cignacmb.com/sites/default/themes/cigna_cmc/images/20150601_07.jpg" alt="老友安心防癌保险">
+            </div>
+        </li>
+        <li>
+            <a href="javascript:void(0);">宝贝启航</a>
+            <div class="accordion-content">
+                <img src="http://www.cignacmb.com/sites/default/themes/cigna_cmc/images/20160105.jpg" alt="宝贝启航">
+            </div>
+        </li>
+    </ul>
+</div>
+    </div>
+
+    <script type="text/javascript" charset="utf-8" defer>/**
+ * Created by r9luox on 2016/7/14.
+ */
+
+;(function(){
+
+    var root = this,
+        empty = function(){},
+        defaults = {
+            clickActive: true,
+            hoverActive: false,
+            autoPlay: false,
+            direction: 'vertical',
+            duration: 3,
+            index: null,
+            switchWidth: 0,
+            onSelect: empty,
+            onSwitchStart: empty,
+            onSwitchEnd: empty
+        };
+    var Accordion = function(id, options){
+        this.options = $.extend({}, defaults, options);
+        this.box = $('#' + (id || this.options.id).replace(/^#*/i, ''));
+        this.listBox = this.box.find('li');
+        this.contentBoxs = this.box.find('li>.accordion-content');
+        this.index = this.options.index;
+        this._isActive = false;
+        this._init();
+    };
+
+    Accordion.prototype = {
+        _init: function(){
+            (this.index && this.index != 0) && this.switch(this.index);
+            this.options.autoPlay && this._play();
+            this._addEvent();
+        },
+        _addEvent: function(){
+            this.options.clickActive && this.box.find('li>a').on('click', $.proxy(this, '_clickHandler'));
+            this.options.hoverActive && this.box.find('li>a').on('mouseover', $.proxy(this, '_clickHandler'));
+        },
+        _clickHandler: function(evt){
+            //if(this._isActive) return;
+            //this._isActive = true;
+            this._currentTarget = evt.currentTarget || evt.target;
+            this.index = this._getIndex() + 1;
+            this.options.onSelect.call(this);
+            this._stop().switch();
+        },
+        _play: function(){
+            var self = this;
+            (!this._isActive && this.options.autoPlay) && (this._stin = window.setInterval(function(){
+                self.index++;
+                self.index > self.listBox.length && (self.index = 1);
+                //console.log(self.index);
+                self._getCurrentTarget().switch();
+            }, this.options.duration * 1000));
+            return this;
+        },
+        _stop: function(){
+            this._isActive = false;
+            window.clearInterval(this._stin); return this;
+        },
+        _getCurrentTarget: function(){
+            this._currentTarget = this.listBox.eq(this.index - 1).find('a')[0];
+            return this;
+        },
+        _getIndex: function(){
+            return this.listBox.index($(this._currentTarget).parent());
+        },
+        switch: function(index){
+            var self = this;
+            if(index){
+                this.index = index;
+                this._getCurrentTarget();
+            }
+            var $target = $(this._currentTarget);
+            if($target.parent().hasClass('active')) return;
+            var showPanel = $target.siblings('.accordion-content');
+            if(!showPanel[0]){
+                this._stop().switch(++this.index);
+                return;
+            }
+            this.listBox.removeClass('active');
+            //切换之前调用，如果函数返回 false，则不进行切换
+            var _start = this.options.onSwitchStart.call(this);
+            if(_start === false)    return;
+            $target.parent().addClass('active');
+
+            if(this.options.direction === 'vertical'){
+                this.contentBoxs.slideUp(200);
+                showPanel.slideDown(300, _end);
+            }else{
+                this.contentBoxs.stop().animate({ width: 0, padding: 0 }, 200);
+                showPanel.css({
+                    display: 'block'
+                }).stop().animate({width: this.options.switchWidth}, 300, _end);
+            }
+
+            function _end(){
+                self._isActive = false;
+                self.options.onSwitchEnd.call(self);
+                self._stop()._play();
+            }
+            return this;
+        }
+    };
+
+    root.Accordion = Accordion;
+
+}).call(this);
+</script>
+
+    <script>
+        $(function(){
+
+            var stim;
+
+            var accordionV = new Accordion('accordion-v', {
+                direction: 'vertical',
+                index: 0,
+                onSwitchStart: function(){
+                    if(this.index == 2){
+                        this.contentBoxs.eq(this.index - 1).find('div').html('<img src="http://img.lanrentuku.com/img/allimg/1212/5-121204193955-50.gif" alt=""/>');
+                    }
+                    //阻止切换
+                    if(this.index == 4)
+                        return false;
+                },
+                onSwitchEnd: function(){
+                    //console.log(this.index);
+                    window.clearTimeout(stim);
+                    if(this.index == 2){
+                        $.get('assets/mockData/test.json', {}, function(res){
+                            this.contentBoxs.eq(this.index - 1).find('div').html(res.data);
+                        }.bind(this));
+                    }
+                }
+            });
+
+            var accordionH = new Accordion('accordion-h', {
+                direction: 'horizontal',
+                index: 3,
+                duration: 3,        //切换间隔
+                switchWidth: 450,   //伸缩的宽度，为内容宽度
+                autoPlay: true,    //是否自动切换
+                clickActive: false, //点击切换
+                hoverActive: true
+            });
+
+        });
+    </script>
+
+<!--build footer-->
+    <!--server loading-->
+    <div class="server-loading loading" id="request-tip" style="display: none;"></div>
+
+    <!--载入js-->
+    <script src="modules/main.js?_cmbx_=94d8986763"></script>
+    
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+.accordion-box.accordion-v{
+    width: 200px;
+    margin: 10px auto;
+}
+.accordion-box.accordion-v ul li{
+    display: block;
+    width: 100%;
+}
+.accordion-box.accordion-v ul li > a{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    background-color: #00a1a9;
+    color: white;
+    text-align: center;
+    border-top: solid 1px #13868c;
+}
+.accordion-box.accordion-v ul li > a:after{
+    content: ">";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    font-size: 22px;
+    color: white;
+    font-family: sans sans-serif monospace;
+    -webkit-transform: translateY(-50%) rotate(90deg);
+    -moz-transform: translateY(-50%) rotate(90deg);
+    -ms-transform: translateY(-50%) rotate(90deg);
+    -o-transform: translateY(-50%) rotate(90deg);
+    transform: translateY(-50%) rotate(90deg);
+}
+.accordion-box.accordion-v ul li.active > a:after{
+    content: ">";
+    -webkit-transform: translateY(-50%) rotate(270deg);
+    -moz-transform: translateY(-50%) rotate(270deg);
+    -ms-transform: translateY(-50%) rotate(270deg);
+    -o-transform: translateY(-50%) rotate(270deg);
+    transform: translateY(-50%) rotate(270deg);
+}
+.accordion-box.accordion-v ul li > a.none:after{
+    content: "";
+}
+.accordion-box.accordion-v ul li > a:hover,
+.accordion-box.accordion-v ul li.active > a{
+    background-color: #00D2DC;
+}
+.accordion-box.accordion-v ul li .accordion-content{
+    display: none;
+    background-color: #F4FFFE;
+    overflow: hidden;
+}
+.accordion-box.accordion-v ul li.active .accordion-content{
+    /*display: block;*/
+    /*border-top: solid 1px #75AEB1;*/
+}
+.accordion-box.accordion-v ul li .accordion-content > div a{
+    display: block;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    text-align: center;
+    border-top: solid 1px #9EB4B5;
+}
+.accordion-box.accordion-v ul li .accordion-content > div a:hover{
+    padding-left: 30px;
+    color: #00a1a9;
+    background-color: #C4CAD0;
+}
+.accordion-box.accordion-v ul li > a,
+.accordion-box.accordion-v ul li > a:after,
+.accordion-box.accordion-v ul li .accordion-content > div a{
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}

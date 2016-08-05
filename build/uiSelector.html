@@ -1,0 +1,425 @@
+<!--build header-->
+<!DOCTYPE html>
+<html class="" style="">
+<head lang="en">
+    <title>下拉选择组件</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="descriptions" charset="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link href="assets/css/app.min.css?_cmbx_=8df2534682" rel="stylesheet" media="screen">
+    <script src="assets/js/libs.js?_cmbx_=416ee13b71"></script>
+</head>
+<body class="" style="">
+
+<style>
+    .select{  position: relative; width: 300px; height: 40px; line-height: 40px; margin: 20px auto;
+        cursor: pointer; }
+    .select:before,
+    .select:after{
+        display: block;
+        width: 40px;
+        height: 38px;
+        position: absolute;
+        right: 1px;
+        top: 1px;
+    }
+    .select:before{
+        content: '';
+        background-color: #ECECEC;
+        border-left: solid 1px #DADADA;
+    }
+    .select:after{
+        content: '▼';
+        text-align: center;
+        color: #607D8B;
+        font-size: 14px;
+    }
+    input{
+        display: block; width: 100%; height: 100%; padding: 0 10px; margin: 0 auto; border: solid 1px #D4D4D4; color: #505050; font-size: 14px;
+    }
+    input:focus{ box-shadow: inset 0 0 2px 0 #C5EDFF; }
+    input::-webkit-input-placeholder{ color: #848383; }
+</style>
+    <div class="select" id="professtion-selector">
+        <input type="text" id="professtion" value="" placeholder="请选择职业" readonly/>
+    </div>
+    <div class="select" id="area-selector">
+        <input type="text" id="area" value="" placeholder="请选择服务地区" readonly/>
+    </div>
+    <div class="select" id="favoree-selector">
+        <input type="text" id="favoree" value="父亲，儿子" placeholder="请选择受益人" readonly/>
+    </div>
+    <style type="text/css" charset="utf-8">.ui-selector{
+    display: none;
+    min-width: 300px;
+    max-width: 400px;
+    max-height: 400px;
+    margin: 0 auto;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99999;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: solid 1px #CDCDCD;
+    background-color: #F3F3F3;
+}
+.ui-selector .ui-s-body{
+    list-style-type: none;
+}
+.ui-selector .ui-s-body li{
+    display: block;
+    padding: 0 10px;
+    height: 34px;
+    line-height: 34px;
+    border-bottom: solid 1px #CDCDCD;
+    position: relative;
+    cursor: pointer;
+    word-wrap: normal;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.ui-selector .ui-s-body li:hover{
+    background-color: #E0E0E0;
+    color: #03A9F4;
+}
+.ui-selector .ui-s-body li.bd-none{
+    border: 0;
+}
+
+.ui-selector.ui-multiple .ui-s-body li{
+    padding-left: 25px;
+}
+.ui-selector.ui-multiple .ui-s-body li:before,
+.ui-selector.ui-multiple .ui-s-body li:after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border: 1px solid #BDBDBD;
+    /*border-radius: 50%;*/
+    position: absolute;
+    left: 5px;
+    top: 12px;
+}
+.ui-selector.ui-multiple .ui-s-body li:after{
+    width: 8px;
+    height: 8px;
+    left: 7px;
+    top: 14px;
+    border: 0;
+}
+.ui-selector.ui-multiple .ui-s-body li.ui-s-active:after{
+    background-color: #03A9F4;
+    /*border: 1px solid #2196F3;*/
+}
+
+
+.ui-selector .ui-s-body li{
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}</style>
+    <script type="text/javascript" charset="utf-8" defer>/**
+ * Created by r9luox on 2016/8/4.
+ */
+
+;(function(){
+    'use strict';
+    var root = this,
+        empty = function(){},
+        effects = { 'fade': ['fadeIn', 'fadeOut'], 'slide': ['slideDown', 'slideUp'] },
+        defaults = {
+            multiple: false,
+            itemTemplate: '<li data-value="{@id}" title="{@name}">{@name}</li>',
+            duration: 'fast',
+            onChange: empty
+        },
+        boxHtml = '<div class="ui-selector"><ul class="ui-s-body"></ul></div>';
+
+    var UISelector = function(id, options){
+        this.options = $.extend({}, defaults, options);
+        this.options.id = id.replace(/^#/i, '');
+        this.input = $('#' + this.options.id);
+        this.selected = [];
+        this._init();
+    };
+    UISelector.prototype = {
+        _init: function(){
+            this._insertBox();
+            this.options.multiple && this.box.addClass('ui-multiple');
+            this._setPosition();
+            this.render();
+            this._addEvent();
+        },
+        _insertBox: function(){
+            var boxId = 'ui-selector-' + this.options.id;
+            this.box = $('#' + boxId);
+            if(!this.box[0]){
+                this.box = $(boxHtml).attr('id', boxId);
+                $('body').append(this.box);
+                this.body = this.box.find('.ui-s-body');
+            }
+        },
+        //初始值
+        _insertDefaults: function(){
+            var vs = (this._getValue() || '').split(/[_，,\\|-]/gi);
+            if(vs.length === 0) return;
+            var items = this.body.find('li'), $item;
+            $.each(items, function(index, item){
+                $item = items.eq(index);
+                (vs.indexOf($item.text()) !== -1) && $item.addClass('ui-s-active');
+            });
+
+        },
+        _setPosition: function(){
+            var offset = this.input[0].getBoundingClientRect() || this.input.offset();
+            this.box.css({
+                'left': offset.left,
+                'top': offset.top + this.input.height()
+            });
+        },
+        _addEvent: function(){
+            var self = this;
+            this.box.undelegate('li', 'click', $.proxy(this, '_onChangeHandler'))
+                .delegate('li', 'click', $.proxy(this, '_onChangeHandler'));
+            this.box.on('mouseover', function(evt){
+                self._mouseover = true;
+            }).on('mouseout', function(evt){
+                self._mouseover = false;
+            });
+            $(document).on('click', function(){
+                if(self._mouseover) return;
+                self._hide();
+            });
+            $(window).on('resize scroll', function(){
+                self._setPosition();
+            });
+        },
+        _getValue: function(){
+            if(/INPUT|TEXTAREA/gi.test(this.input[0].tagName)){
+                return this.input.val();
+            }else{
+                return this.input.text();
+            }
+        },
+        _setValue: function(value, attr){
+            if(/INPUT|TEXTAREA/gi.test(this.input[0].tagName)){
+                this.input.val(value);
+            }else{
+                this.input.text(value);
+            }
+            this.input.attr('data-value', attr);
+        },
+        _updates: function(){
+            var items = this.body.find('.ui-s-active'), item;
+            var ts = '', vs = '';
+            for(var i = 0, len = items.length; i < len; ++i){
+                item = items[i];
+                this.selected.indexOf(item) === -1 && this.selected.push(item);
+                ts += '，' + item.getAttribute('data-value');
+                vs += '，' + item.textContent;
+            }
+            this._setValue(vs.substr(1), ts.substr(1));
+
+        },
+        _definedMethods: function(obj){
+            var self = this, method = '';
+            for(var k in obj){
+                method = 'getItemFor' + k[0].toUpperCase() + k.substr(1);
+                self.__proto__[method] = (function(k){
+                    return function(v){
+                        return _get(k, v);
+                    }
+                })(k);
+            }
+            function _get(k, v){
+                for(var i = 0, len = self.options.data.length; i < len; ++i){
+                    if(self.options.data[i][k] == v){
+                        return self.options.data[i];
+                    }
+                }
+            }
+
+        },
+        _show: function(){
+            var effect = 'show';
+            if(this.options.animate && effects[this.options.animate]){
+                effect = effects[this.options.animate][0];
+                this.box[effect](this.options.duration);
+            }else{
+                this.box[effect]();
+            }
+        },
+        _hide: function(){
+            this.selected = [];
+            this._mouseover = false;
+            var effect = 'hide';
+            if(this.options.animate && effects[this.options.animate]){
+                effect = effects[this.options.animate][1];
+                this.box[effect](this.options.duration);
+            }else{
+                this.box[effect]();
+            }
+        },
+        _onChangeHandler: function(evt){
+            evt.preventDefault();
+            evt.stopPropagation();
+            var $target = $(evt.currentTarget || evt.target),
+                attr = $target.attr('data-value'),
+                name = $target.text();
+            //是否多选
+            if(this.options.multiple){
+                //this.body.find('li').removeClass('ui-s-active');
+                $target.toggleClass('ui-s-active');
+                this._updates();
+                return false;
+            }
+            this._setValue(name, attr);
+            this.options.onChange.call(this, $target[0]);
+            !this.options.multiple && this._hide();
+        },
+        open: function(){
+            $('.ui-selector').hide();
+            this._show();
+        },
+        close: function(){
+            this._hide();
+        },
+        render: function(data){
+            data = data || this.options.data;
+            if(!$.isArray(data) || data.length === 0)   return;
+            //根据对象属性自动生成方法
+            this._definedMethods(data[0]);
+            var li = '', item;
+            for(var i = 0, len = data.length; i < len; ++i){
+                item = data[i];
+                li = this.options.itemTemplate.replace(/\{@([\w\d_]+?)\}/gi, function(match, attr){
+                    return item[attr];
+                });
+                if(i === len - 1){
+                    li = $(li).addClass('bd-none');
+                }
+                this.body.append(li);
+            }
+            this.box.html(this.body);
+            //处理默认
+            (this.options.multiple && this._getValue()) && this._insertDefaults();
+        }
+    };
+
+    root.UISelector = UISelector;
+
+}).call(this);</script>
+
+    <script>
+        $(function(){
+
+            var professtions = [
+                { code: "K", name: "金融业" },
+                { code: "I", name: "水陆空交通运输业、邮政、水电、燃气、通讯、ＩＴ业" },
+                { code: "C1", name: "旅游、餐饮、零售" },
+                { code: "J", name: "文体业、教育业、新闻业、卫生保健业、清洁或家政服务业" },
+                { code: "A", name: "公务员" },
+                { code: "C4", name: "房屋中介、律师、公证人员、会计师" },
+                { code: "G", name: "矿石开采业、建筑工程业、装潢业" },
+                { code: "F", name: "农牧业、渔业、木材森林业" },
+                { code: "D4", name: "自营投资者" },
+                { code: "C2", name: "娱乐场所、博彩、影视娱乐业" },
+                { code: "H", name: "五金电器、日用品、化工建材等制造业" },
+                { code: "C3", name: "废品收购；艺术品收藏、拍卖、典当、贵金属和珠宝交易商" },
+                { code: "D1", name: "家庭主妇" },
+                { code: "D2", name: "离退休人员" },
+                { code: "D3", name: "除家庭主妇及离退休人员以外其它无固定职业人员" },
+                { code: "L", name: "成年学生（18周岁及以上）" },
+                { code: "B", name: "外国政要" },
+                { code: "E", name: "其他" }
+            ];
+
+            var uiSelector = new UISelector('#professtion', {
+                data: professtions,
+                //是否可以多选
+                multiple: false,
+                itemTemplate: '<li data-value="{@code}" title="{@name}">{@name}</li>',
+                onChange: function(item){}
+            });
+
+            $('#professtion-selector').click(function(evt){
+                evt.stopPropagation();
+                uiSelector.open();
+            });
+
+            //服务地区
+            var areas = [
+                { "key": "HNZZ0", "name": "河南省" },
+                { "key": "QDQD0", "name": "青岛市" },
+                { "key": "SZSZ0", "name": "深圳市" },
+                { "key": "SCCD0", "name": "四川省" },
+                { "key": "JSNJ0", "name": "江苏省" },
+                { "key": "HBWH0", "name": "湖北省" },
+                { "key": "LNSY0", "name": "辽宁省" },
+                { "key": "SDJN0", "name": "山东省" },
+                { "key": "ZJHZ0", "name": "浙江省" },
+                { "key": "GDGZ0", "name": "广东省" },
+                { "key": "SHSH0", "name": "上海市" },
+                { "key": "BJBJ0", "name": "北京市" },
+                { "key": "SAXA0", "name": "陕西省" },
+                { "key": "CQCQ0", "name": "重庆市" },
+                { "key": "HUCS0", "name": "湖南省" }
+            ];
+
+            var areaUISelector = new UISelector('#area', {
+                data: areas,
+                itemTemplate: '<li data-value="{@key}">{@name}</li>',
+                animate: 'fade'
+            });
+
+            $('#area-selector').click(function(evt){
+                evt.stopPropagation();
+                areaUISelector.open();
+            });
+
+            //服务地区
+            var favorees = [
+                { "key": "FQ", "name": "父亲" },
+                { "key": "MQ", "name": "母亲" },
+                { "key": "QZ", "name": "妻子" },
+                { "key": "XD", "name": "兄弟" },
+                { "key": "JM", "name": "姐妹" },
+                { "key": "EZ", "name": "儿子" },
+                { "key": "NE", "name": "女儿" }
+            ];
+
+            var favoreeUISelector = new UISelector('#favoree', {
+                data: favorees,
+                multiple: true,
+                itemTemplate: '<li data-value="{@key}">{@name}</li>',
+                animate: 'slide'
+            });
+
+            $('#favoree-selector').click(function(evt){
+                evt.stopPropagation();
+                favoreeUISelector.open();
+            });
+
+
+        });
+    </script>
+
+<!--build footer-->
+    <!--server loading-->
+    <div class="server-loading loading" id="request-tip" style="display: none;"></div>
+
+    <!--载入js-->
+    <script src="modules/main.js?_cmbx_=94d8986763"></script>
+    
+
+</body>
+</html>

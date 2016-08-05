@@ -1,0 +1,162 @@
+<!--build header-->
+<!DOCTYPE html>
+<html class="" style="">
+<head lang="en">
+    <title>自动完成</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="descriptions" charset="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link href="assets/css/app.min.css?_cmbx_=8df2534682" rel="stylesheet" media="screen">
+    <script src="assets/js/libs.js?_cmbx_=416ee13b71"></script>
+</head>
+<body class="" style="">
+
+    <div style="margin: 50px auto; text-align: center">
+        <style type="text/css" charset="utf-8">.autocomplate-put{
+    width: 300px;
+    height: 40px;
+    padding: 0 5px;
+    border: solid 1px #00BCD4;
+    background-color: white;
+    text-align: left;
+    box-shadow: inset 0 0 3px 0px rgb(223, 247, 251);
+    color: #008192;
+}
+.autocomplate-put:hover,
+.autocomplate-put:focus,
+.autocomplate-put:active{
+    box-shadow: inset 0 0 3px 2px rgb(223, 247, 251);
+}
+
+.autocomplate-box{
+    width: 300px;
+    margin: -1px auto 0 auto;
+    border: solid 1px #00BCD4;
+}
+.autocomplate-box p {
+    width: 300px;
+    padding: 1px 5px;
+    margin: 0 auto;
+    text-align: left;
+    cursor: pointer;
+}
+.autocomplate-box p:hover{
+    background-color: #CCD2D2;
+}
+.autocomplate-box p span{
+    color: #A9CACE;
+}
+
+.autocomplate-put,
+.autocomplate-box p{
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}</style>
+
+<input type="text" class="autocomplate-put" id="autocomplate-email" name="email" maxlength="50" autocomplete="off"/>
+
+
+<script type="text/javascript" charset="utf-8" defer>/**
+ * Created by R9luox on 2016/7/19.
+ */
+
+;(function(){
+
+    var defaults = {
+        onSelect: function(){}
+    },
+    rid = (new Date()).getTime();
+    var AutoComplate = function(id, options){
+        var self = this;
+        this.options = $.extend({}, defaults, options);
+        this.input = $('#' + (id || this.options.id).replace(/^#*/i, ''));
+        var box = $('#autocomplate-box');
+        this.box = box[0] ? box : (function(){
+            var div = document.createElement('div');
+            div.setAttribute('id', 'autocomplate-box');
+            div.setAttribute('class', 'autocomplate-box');
+            div.style.display = 'none';
+            self.input.after(div);
+            return $(div);
+        })();
+        this.options.data && Object.prototype.toString.call(this.options.data) == '[object Array]' && this._init();
+    };
+    AutoComplate.prototype = {
+        _init: function(){
+            this._createList();
+        },
+        _createList: function(value){
+            var data = this.options.data,
+                i = 0,
+                len = data.length,
+                ps = '';
+            for(; i < len; ++i){
+                ps += '<p>' + (value || '') + '<span>' + data[i] + '</span></p>';
+            }
+            this.box.html(ps);
+            this._addEvent();
+        },
+        _addEvent: function(){
+            var self = this;
+            this.input.off().on('input', $.proxy(this, '_inputHandler'));
+            this.box.find('p').off().on('click', function(evt){
+                var v = $(this).html().replace(/<[^>]*?>/gi, '');
+                self.input.val(v);
+                self.box.hide();
+                self.options.onSelect.call(self, v);
+            });
+        },
+        _inputHandler: function(evt){
+            var target = evt.currentTarget || evt.target;
+            this._replaceValues(target.value);
+        },
+        _replaceValues: function(value){
+            if(!value || '' == value){
+                this.box.hide();
+            }else{
+                this._createList(value);
+                this.box.show();
+            }
+        }
+
+    };
+
+    this.AutoComplate = AutoComplate;
+
+}).call(this);
+</script>
+    </div>
+
+    <script>
+        $(function(){
+            var emails = [
+                '@gmail.com',
+                '@sina.com.cn',
+                '@qq.com',
+                '@163.com',
+                '@126.com'
+            ];
+            //var words = ['.html', '.css', '.js', '.ts', '.java', '.php', '.jsp', '.rb', '.py', '.txt'];
+            var emailAutoComplate = new AutoComplate('#autocomplate-email', {
+                data: emails
+            });
+        });
+    </script>
+
+<!--build footer-->
+    <!--server loading-->
+    <div class="server-loading loading" id="request-tip" style="display: none;"></div>
+
+    <!--载入js-->
+    <script src="modules/main.js?_cmbx_=94d8986763"></script>
+    
+
+</body>
+</html>

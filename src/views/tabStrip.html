@@ -1,0 +1,34 @@
+<!--build header-->
+<include src="../assets/layout/header.html"
+         title="选项卡组件">
+</include>
+
+    <include src="../assets/components/tabStrip/style-htab.css"></include>
+    <include src="../assets/components/tabStrip/style-vtab.css"></include>
+    <include src="../assets/components/tabStrip/index.html" id="htab-strip" direction="horizontal"></include>
+    <include src="../assets/components/tabStrip/index.html" id="vtab-strip" direction="vertical"></include>
+    <include src="../assets/components/tabStrip/index.js"></include>
+
+    <script>
+        $(function(){
+            var htabStrip = new TabStrip('htab-strip', {
+                index: 2,
+                hover: false,
+                onSelect: function(target){
+                    //console.log(target);
+                }
+            });
+            var vtabStrip = new TabStrip('vtab-strip', {
+                hover: true,
+                onSelect: function(target){
+                    //console.log(target);
+                }
+            });
+            vtabStrip.setIndex(3);
+        });
+    </script>
+
+<!--build footer-->
+<include src="../assets/layout/footer.html"
+         view="">
+</include>

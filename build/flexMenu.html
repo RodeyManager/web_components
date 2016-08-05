@@ -1,0 +1,246 @@
+<!--build header-->
+<!DOCTYPE html>
+<html class="" style="">
+<head lang="en">
+    <title>伸缩式导航</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="descriptions" charset="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link href="assets/css/app.min.css?_cmbx_=8df2534682" rel="stylesheet" media="screen">
+    <script src="assets/js/libs.js?_cmbx_=416ee13b71"></script>
+</head>
+<body class="" style="">
+
+    <style type="text/css" charset="utf-8">.flex-menu-box{
+    width: 100%;
+    height: 40px;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    margin: 0 auto;
+    background-color: #02ACBB;
+}
+.flex-menu-box,
+.flex-menu-box .flex-content,
+.flex-menu-box .flex-sub-menu,
+.flex-menu-box a {
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.flex-menu-box a:hover{
+    color: #02ACBB;
+}
+.flex-menu-box .flex-menu-layout{
+    width: 100%;
+    height: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: rgba(230,230,230,0.9);
+    box-shadow: 0 1px 5px 1px #B5B5B5;
+}
+.flex-menu-box .flex-menu-line{
+    width: 100%;
+    height: 40px;
+    background-color: #00a1a9;
+    position: relative;
+}
+.flex-menu-box .flex-menu-content {
+    width: 980px;
+    height: 100%;
+    margin: -40px auto 0 auto;
+    font-size: 14px;
+    color: #333333;
+    position: relative;
+}
+.flex-menu-box .flex-content {
+    width: 20%;
+    height: 100%;
+    float: left;
+    position: relative;
+}
+.flex-menu-box .flex-content:hover .flex-sub-menu,
+.flex-menu-box .flex-content:hover > a{
+    background-color: rgba(255,255,255,.4);
+}
+.flex-menu-box .flex-content > a {
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    border-right: 1px solid rgba(36, 95, 99, 0.24);
+}
+.flex-menu-box .flex-sub-menu{
+    height: 100%;
+    padding: 10px 0;
+    border-right: 1px solid rgba(36, 95, 99, 0.24);
+    position: relative;
+    text-align: center;
+}
+.flex-menu-box .flex-sub-menu ul li {
+    display: block;
+    width: 50%;
+    padding: 5px 0;
+    float: left;
+    text-align: center;
+}
+.flex-menu-box .flex-content.flex-first,
+.flex-menu-box .flex-content.flex-last{
+    height: auto;
+}
+.flex-menu-box .flex-content.flex-br-none .flex-sub-menu,
+.flex-menu-box .flex-content.flex-br-none > a,
+.flex-menu-box .flex-content.flex-last .flex-sub-menu,
+.flex-menu-box .flex-content.flex-last > a{
+    border-right: 0;
+}
+.flex-menu-box .flex-menu-content:after,
+.flex-menu-box .flex-sub-menu:after{
+    content: "";
+    display: block;
+    zoom: 1;
+    clear: both;
+}
+
+.flex-sub-menu .flex-ex img{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.flex-sub-menu .flex-ex p{
+    display: inline-block;
+    width: 100px;
+    font-size: 10px;
+    line-height: 20px;
+    vertical-align: middle;
+    text-align: left;
+}
+.flex-menu-box .flex-hot{
+    display: block;
+    width: 18px;
+    height: 14px;
+    line-height: 14px;
+    border-radius: 50% 0;
+    background-color: #F9365D;
+    position: absolute;
+    top: 3px;
+    right: 45px;
+    text-align: center;
+    color: white;
+    font: 10px normal;
+}
+</style>
+
+<div class="flex-menu-box" id="flex-nav">
+    <div class="flex-menu-layout">
+        <div class="flex-menu-line"></div>
+        <div class="flex-menu-content">
+            <div class="flex-content flex-first">
+                <a href="#">首页</a>
+            </div>
+            <div class="flex-content ">
+                <a href="javascript:void(0);">个人保险</a>
+                <i class="flex-hot">2</i>
+                <div class="flex-sub-menu">
+                    <div class="flex-ex">
+                        <a href="http://www.cignacmb.com/shop/shaoerxian.html" title="守护未来少儿教育金（分红型）">
+                            <img width="50" style="vertical-align: middle" src="http://www.cignacmb.com/resource/upimg/201605/2016053111190456918.jpg" alt="守护未来少儿教育金（分红型）" />
+                            <p>守护未来少儿教育金（分红型）</p>
+                        </a>
+                    </div>
+                    <ul>
+                        <li>儿童保险</li>
+                        <li>健康保险</li>
+                        <li>老人保险</li>
+                        <li>意外保险</li>
+                        <li>旅游保险</li>
+                        <li>理财保险</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex-content ">
+                <a href="javascript:void(0);">团体保险</a>
+                <div class="flex-sub-menu">
+                    <ul>
+                        <li>白金计划</li>
+                        <li>黄金计划</li>
+                        <li>白银计划</li>
+                        <li>翡翠计划</li>
+                        <li>珍珠计划</li>
+                        <li>团体定期寿险及意外保险</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex-content">
+                <a href="javascript:void(0);">客服服务</a>
+                <div class="flex-sub-menu">
+                    <ul>
+                        <li>保单服务</li>
+                        <li>理赔服务</li>
+                        <li>价格公告</li>
+                        <li>表格下载</li>
+                        <li>权益保护</li>
+                        <li>附加值服务</li>
+                        <li>直付医疗网络</li>
+                        <li>客户活动</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex-content flex-br-none">
+                <a href="#">关于我们</a>
+                <div class="flex-sub-menu">
+                    <div class="flex-ex">
+                        <a href="http://10.140.130.35/about/" title="关于我们">
+                            <img width="150" src="http://10.140.130.35/sites/default/themes/cigna_cmc/cignacmb/images/banner/banner_right_01.jpg" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" charset="utf-8" defer>/**
+ * Created by r9luox on 2016/7/14.
+ */
+
+$(function(){
+    $('.flex-content').hover(function(){
+        $(this).parents('.flex-menu-box').css({
+            'overflow': 'visible'
+        });
+    }, function(){
+        $(this).parents('.flex-menu-box').css({
+            'overflow': 'hidden'
+        });
+    });
+});
+</script>
+
+    <script>
+        $(function(){
+
+        });
+    </script>
+
+<!--build footer-->
+    <!--server loading-->
+    <div class="server-loading loading" id="request-tip" style="display: none;"></div>
+
+    <!--载入js-->
+    <script src="modules/main.js?_cmbx_=94d8986763"></script>
+    
+
+</body>
+</html>

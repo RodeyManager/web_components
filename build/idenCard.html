@@ -1,0 +1,108 @@
+<!--build header-->
+<!DOCTYPE html>
+<html class="" style="">
+<head lang="en">
+    <title>身份证验证+信息提取</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="descriptions" charset="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link href="assets/css/app.min.css?_cmbx_=8df2534682" rel="stylesheet" media="screen">
+    <script src="assets/js/libs.js?_cmbx_=416ee13b71"></script>
+</head>
+<body class="" style="">
+
+<style>
+    .select{
+        position: relative;
+        width: 80%; height: 40px; line-height: 40px; margin: 20px auto;
+        cursor: pointer;
+    }
+    .select input, .select label{
+        display: inline-block;
+        height: 40px;
+        line-height: 40px;
+        vertical-align: middle;
+    }
+    .select label{ width: 30%; text-align: right;  }
+    .select input{
+        width: 68%; padding: 0 10px; border: solid 1px #D4D4D4; color: #505050; font-size: 14px;
+    }
+    .select.age input{
+        width: 34%;
+        margin-right: 5px;
+    }
+    .select.sex input{
+        width: auto;
+        margin: 0 5px 0 30px;
+    }
+    input:focus{ box-shadow: inset 0 0 2px 0 #C5EDFF; }
+    input::-webkit-input-placeholder{ color: #848383; }
+    #birthday{
+        background: url("assets/images/datePicker.gif?_cmbx_=9a69a1ff10") no-repeat right 60%;
+    }
+</style>
+    <div class="select">
+        <label for="idencard">身份证号码：</label>
+        <input type="text" id="idencard" value="" placeholder="输入身份证号码" />
+    </div>
+    <div class="select">
+        <label for="birthday">出生日期：</label>
+        <input type="text" id="birthday" value="" placeholder="请选择服务地区" readonly/>
+    </div>
+    <div class="select age">
+        <label for="age">年龄：</label>
+        <input type="text" id="age" value="" placeholder="年龄" readonly />岁
+    </div>
+    <div class="select sex">
+        <label>性别：</label>
+        <input type="radio" id="sex-1" name="sex" value="1" readonly disabled/>男
+        <input type="radio" id="sex-2" name="sex" value="2" readonly disabled/>女
+    </div>
+    <script src="assets/js/plugins/IdenCard.js?_cmbx_=7e798549ca"></script>
+
+    <script>
+        $(function(){
+
+            var $idenCard = $('#idencard'),
+                    $birthday = $('#birthday'),
+                    $age = $('#age');
+
+            $idenCard.blur(function(evt){
+                var card = $idenCard.val();
+                if(card && IdenCard.vIdenCard(card)){
+                    $idenCard.css('border-color', '#D4D4D4');
+                }else{
+                    $idenCard.css('border-color', 'red');
+                    return false;
+                }
+                //获取生日
+                var birthday = IdenCard.getBirthday(card);
+                $birthday.val(birthday);
+                //提取年龄
+                var age = IdenCard.getAge(card);
+                $age.val(age);
+                //获取性别
+                var sex = IdenCard.getSex(card);
+                console.log(sex);
+                $('#sex-'+ sex).attr('checked', 'checked').prop('checked', true);
+
+            });
+
+
+        });
+    </script>
+
+<!--build footer-->
+    <!--server loading-->
+    <div class="server-loading loading" id="request-tip" style="display: none;"></div>
+
+    <!--载入js-->
+    <script src="modules/main.js?_cmbx_=94d8986763"></script>
+    
+
+</body>
+</html>

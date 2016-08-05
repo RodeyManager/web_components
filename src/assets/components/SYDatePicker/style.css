@@ -1,0 +1,167 @@
+.sy-date-picker{
+    display: none;
+    position: fixed;
+    width: 300px;
+    padding: 5px 0;
+    margin: 0 auto;
+    border: solid 1px gainsboro;
+    background-color: whitesmoke;
+    z-index: 999999;
+}
+.sy-date-picker ul,
+.sy-date-picker ul li{
+    margin: 0 auto;
+    list-style-type: none;
+}
+.sy-date-picker .sy-date-header,
+.sy-date-picker .sy-date-footer{
+    height: 30px;
+    position: relative;
+}
+.sy-date-picker .sy-date-header ul li{
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto;
+    float: left;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+.sy-date-picker .sy-date-header ul li.sy-btn{
+    width: 50px;
+    font-size: 20px;
+    font-family: monospace;
+    font-weight: bold;
+    color: #03A9F4;
+}
+.sy-date-picker .sy-date-header ul li.sy-current-date{
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.sy-date-picker .sy-date-body{
+    padding: 0 1.5%;
+}
+.sy-date-picker .sy-date-header ul:after,
+.sy-date-picker .sy-date-body ul:after,
+.sy-date-picker .sy-date-footer:after{
+    content:"";
+    display: block;
+    zoom: 1;
+    clear: both;
+}
+.sy-date-picker .sy-date-days{
+    background-color: white;
+}
+.sy-date-picker .sy-date-week li,
+.sy-date-picker .sy-date-days li{
+    display: block;
+    width: 14%;
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    text-align: center;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 30%;
+    position: relative;
+}
+.sy-date-picker .sy-date-header ul li,
+.sy-date-picker .sy-date-week li,
+.sy-date-picker .sy-date-days li,
+.sy-date-picker .sy-years ul li{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.sy-date-picker .sy-date-week li,
+.sy-date-picker .sy-none{
+    color: #AFAFAF;
+}
+.sy-date-picker .sy-date-week li.sy-break,
+.sy-date-picker .sy-date-days li.sy-break{
+    color: #03A9F4;
+}
+.sy-date-picker .sy-date-days li:hover,
+.sy-date-picker .sy-date-days li.sy-active,
+.sy-date-picker .sy-years ul li:hover,
+.sy-date-picker .sy-years ul li.sy-active{
+    background-color: #9FE1FF;
+    border-radius: 50%;
+    color: #2196F3;
+    text-shadow: 1px 1px 1px #FFFFFF;
+}
+.sy-date-picker .sy-date-footer{
+    height: 40px;
+    text-align: right;
+    padding: 10px 10px 0 0;
+}
+.sy-date-picker .sy-date-footer button{
+    display: inline-block;
+    width: 60px;
+    height: 24px;
+    line-height: 24px;
+    margin: 0 1px;
+    text-align: center;
+    background-color: #03A9F4;
+    color: white;
+}
+.sy-date-picker .sy-date-footer button.sy-clear-btn{
+    background-color: #DE9191;
+}
+.sy-date-picker .sy-date-footer .sy-time{
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    height: 24px;
+    line-height: 24px;
+}
+
+/* years */
+.sy-date-picker .sy-years{
+    display: none;
+    position: absolute;
+    left: 5px;
+    top: 40px;
+    bottom: 40px;
+    right: 5px;
+    padding: 6px 0;
+    background-color: white;
+}
+.sy-date-picker .sy-years ul li{
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    width: 20%;
+    text-align: center;
+    cursor: pointer;
+    float: left;
+    border-radius: 30%;
+    position: relative;
+}
+
+.sy-date-picker,
+.sy-date-picker .sy-date-header,
+.sy-date-picker .sy-date-footer,
+.sy-date-picker .sy-date-body,
+.sy-date-picker .sy-date-days,
+.sy-date-picker .sy-date-days li,
+.sy-date-picker .sy-years,
+.sy-date-picker .sy-years li{
+    overflow: hidden;
+}
+
+.sy-date-picker .sy-date-header ul li,
+.sy-date-picker .sy-date-week li,
+.sy-date-picker .sy-date-days li,
+.sy-date-picker .sy-date-footer button,
+.sy-date-picker .sy-years ul li{
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}

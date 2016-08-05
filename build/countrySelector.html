@@ -1,0 +1,792 @@
+<!--build header-->
+<!DOCTYPE html>
+<html class="" style="">
+<head lang="en">
+    <title>国家选择组件</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="descriptions" charset="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link href="assets/css/app.min.css?_cmbx_=8df2534682" rel="stylesheet" media="screen">
+    <script src="assets/js/libs.js?_cmbx_=416ee13b71"></script>
+</head>
+<body class="" style="">
+
+<style>
+    #country{
+        display: block;
+        width: 300px;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 10px;
+        margin: 20px auto;
+        border: solid 1px #D4D4D4;
+        color: #505050;
+        font-size: 14px;
+    }
+    #country:focus{ box-shadow: inset 0 0 2px 0 #C5EDFF; }
+    #country::-webkit-input-placeholder{ color: #D4D4D4; }
+</style>
+    <input type="text" id="country" value="" placeholder="请选择国家或地区" readonly/>
+    <style type="text/css" charset="utf-8">.cts-box,
+.cts-box .cts-header,
+.cts-box .cts-body,
+.cts-box .cts-footer{
+    overflow: hidden;
+    position: relative;
+}
+.cts-box a{ text-underline: none; }
+.cts-box{
+    display: none;
+    width: 400px;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    left: 20px;
+    top: 60px;
+    z-index: 99999;
+    background-color: white;
+    border: solid 1px #CDCDCD;
+    box-shadow: 1px 1px 3px 0 #E6E6E6;
+}
+.cts-box .cts-header{
+    width: 100%;
+    height: 34px;
+    line-height: 34px;
+    border-bottom: solid 1px #D8D8D8;
+    background-color: whitesmoke;
+    color: #555555;
+    padding: 0 10px;
+}
+.cts-box .cts-header .cts-title{
+    display: inline-block;
+    padding: 0;
+}
+.cts-box .cts-header .cts-close-btn{
+    display: block;
+    width: 34px;
+    height: 34px;
+    line-height: 28px;
+    text-align: center;
+    font-style: normal;
+    font-size: 30px;
+    color: #03A9F4;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    text-indent: -9999px;
+}
+.cts-box .cts-header .cts-close-btn:before,
+.cts-box .cts-header .cts-close-btn:after{
+    content: "";
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: #00AAF7;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+.cts-box .cts-header .cts-close-btn:before{
+    -webkit-transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+    -moz-transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+    -ms-transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+    -o-transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+    transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+}
+.cts-box .cts-header .cts-close-btn:after{
+    -webkit-transform: translate3d(-50%, -50%, 0) rotate(45deg);
+    -moz-transform: translate3d(-50%, -50%, 0) rotate(45deg);
+    -ms-transform: translate3d(-50%, -50%, 0) rotate(45deg);
+    -o-transform: translate3d(-50%, -50%, 0) rotate(45deg);
+    transform: translate3d(-50%, -50%, 0) rotate(45deg);
+}
+.cts-box .cts-header .cts-close-btn:hover:before{
+    box-shadow: 0 0 2px 0 #22BAFF;
+    -webkit-transform: translate3d(-50%, -50%, 0) rotate(45deg);
+    -moz-transform: translate3d(-50%, -50%, 0) rotate(45deg);
+    -ms-transform: translate3d(-50%, -50%, 0) rotate(45deg);
+    -o-transform: translate3d(-50%, -50%, 0) rotate(45deg);
+    transform: translate3d(-50%, -50%, 0) rotate(45deg);
+}
+.cts-box .cts-header .cts-close-btn:hover:after{
+    box-shadow: 0 0 2px 0 #22BAFF;
+    -webkit-transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+    -moz-transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+    -ms-transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+    -o-transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+    transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+}
+
+
+.cts-box .cts-body{
+    padding: 10px 10px;
+    min-height: 200px;
+}
+.cts-box .cts-selected{
+    display: none;
+    padding: 0 0 15px 0;
+    margin: 0 auto;
+}
+.cts-box .cts-selected .cts-s-item,
+.cts-box .cts-selected .cts-clear-btn{
+    padding: 0 20px 0 5px;
+    margin: 0 5px 3px 0;
+    border: solid 1px #03A9F4;
+    position: relative;
+    cursor: pointer;
+    background-color: #2BBBFD;
+    color: white;
+}
+.cts-box .cts-selected .cts-s-item i{
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-style: normal;
+    font-size: 12px;
+    color: gainsboro;
+}
+.cts-box .cts-selected .cts-s-item:hover{
+    box-shadow: 0 0 2px 0 #7BD6FF;
+}
+.cts-box .cts-selected .cts-s-item:hover i,
+.cts-box .cts-selected .cts-s-item i:hover{
+    color: white;
+}
+.cts-box .cts-selected .cts-clear-btn{
+    padding: 0 10px;
+    background-color: #C7C7C7;
+    color: #5A5A5A;
+    border: solid 1px #ADADAD;
+}
+.cts-box .cts-selected .cts-clear-btn:hover{
+    background-color: #ECECEC;
+}
+
+.cts-box .cts-selected .cts-s-item,
+.cts-box .cts-selected .cts-clear-btn,
+.cts-box .cts-tabs li,
+.cts-box .cts-list li,
+.cts-box .cts-footer a{
+    display: inline-block;
+    list-style-type: none;
+    font-size: 12px;
+    text-align: center;
+    float: left;
+}
+.cts-box .cts-tabs{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: solid 1px #03A9F4;
+}
+.cts-box .cts-tabs li{
+    padding: 0 10px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    margin-top: -2px;
+}
+.cts-box .cts-tabs li:hover{
+    color: #03A9F4;
+}
+.cts-box .cts-tabs li.cts-active{
+    border-top: solid 1px #03A9F4;
+    border-right: solid 1px #03A9F4;
+    border-left: solid 1px #03A9F4;
+    border-bottom: solid 1px white;
+    color: #03A9F4;
+}
+.cts-box .cts-list{
+    padding: 5px 0;
+}
+.cts-box .cts-list li{
+    display: none;
+    width: 48%;
+    margin: 1px 1%;
+    text-align: left;
+}
+.cts-box .cts-list li input,
+.cts-box .cts-list li label{
+    font-size: 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+.cts-box .cts-list li input:checked + label,
+.cts-box .cts-list li:hover label{
+    color: #2BBBFD;
+}
+.cts-box .cts-list li input:checked + label em,
+.cts-box .cts-list li label em{
+    color: red;
+    font-size: 12px;
+}
+
+.cts-box .cts-footer{
+    text-align: center;
+    padding: 5px 0 10px 0;
+}
+.cts-box .cts-footer a{
+    float: none;
+    padding: 0 5px;
+    margin: 0 2px;
+    border: solid 1px #CDCDCD;
+    color: #555555;
+    cursor: pointer;
+}
+.cts-box .cts-footer a:hover,
+.cts-box .cts-footer a.cts-active{
+    border: solid 1px #03A9F4;
+    background-color: #2BBBFD;
+    color: white;
+}
+
+.cts-box .cts-selected:after,
+.cts-box .cts-tabs:after,
+.cts-box .cts-list:after,
+.cts-box .cts-search:after{
+    content: '';
+    display: block;
+    zoom: 1;
+    clear: both;
+}
+
+.cts-box .cts-search{
+    display: none;
+    margin-bottom: 15px;
+}
+.cts-box .cts-search label,
+.cts-box .cts-search input,
+.cts-box .cts-search button{
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 10px;
+    vertical-align: middle;
+    float: left;
+}
+.cts-box .cts-search label{
+    width: 12%;
+    text-align: left;
+    padding: 0 0;
+}
+.cts-box .cts-search input{
+    width: 78%;
+    border: solid 1px #D4D4D4;
+    border-right: 0;
+}
+.cts-box .cts-search input:focus{
+    box-shadow: inset 0 0 2px 0 #C5EDFF;
+}
+.cts-box .cts-search button{
+    width: 10%;
+    font-family: monospace;
+    font-weight: bold;
+    border: solid 1px #2196F3;
+    border-left: 0;
+    background-color: #2BBBFD;
+    color: white;
+    font-size: 18px;
+}
+.cts-box .cts-search button:hover{
+    background-color: #03A9F4;
+    text-indent: 20%;
+}
+.cts-box .cts-search input[type="text"]::-webkit-input-placeholder{
+    color: #D4D4D4;
+}
+
+.cts-box .cts-tabs li,
+.cts-box .cts-close-btn,
+.cts-box .cts-close-btn:before,
+.cts-box .cts-close-btn:after,
+.cts-box .cts-s-item,
+.cts-box .cts-s-item i,
+.cts-box .cts-clear-btn,
+.cts-box .cts-list li input,
+.cts-box .cts-list li label,
+.cts-box .cts-search label,
+.cts-box .cts-search input,
+.cts-box .cts-search button,
+.cts-box .cts-footer a{
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}</style>
+    <div class="cts-box cts-scale" id="select-contry">
+    <div class="cts-header">
+        <h5 class="cts-title">请选择国家或地区</h5>
+        <i class="cts-close-btn">&times;</i>
+    </div>
+    <div class="cts-body">
+        <div class="cts-selected">
+            <div class="cts-clear-btn">全部清除</div>
+        </div>
+        <div class="cts-search">
+            <label for="cts-search">名称：</label>
+            <input type="text" id="cts-search" name="cts-search" class="cts-search-input" placeholder="请输入国家或地区名称"/>
+            <button class="cts-search-btn">&gt;</button>
+        </div>
+        <ul class="cts-tabs">
+            <li data-scope="HOT" class="cts-active">热门</li>
+            <li data-scope="A-G">ABCDEFG</li>
+            <li data-scope="H-N">HIJKLMN</li>
+            <li data-scope="O-T">OPQRST</li>
+            <li data-scope="U-Z">UVWXYZ</li>
+        </ul>
+        <ul class="cts-list"></ul>
+    </div>
+    <div class="cts-footer">
+    </div>
+</div>
+    <script src="assets/js/plugins/country.js?_cmbx_=15a9d6833f"></script>
+    <script type="text/javascript" charset="utf-8" defer>/**
+ * Created by r9luox on 2016/8/3.
+ */
+
+;(function(){
+    'use strict';
+
+    var root = this,
+        empty = function(){},
+        defaults = {
+            pageSize: 10,
+            page: 1,
+            showSelectedBox: true,
+            showSearchBox: false,
+            realSearch: true,
+            showHots: true,
+            onClose: empty,
+            onOpen: empty,
+            onChange: empty,
+            onRemove: empty,
+            onChangeTab: empty,
+            onChangePage: empty,
+            onClear: empty
+        },
+        arrRemove = function(arr, item){
+            var index = arr.indexOf(item);
+            if(index !== -1){
+                arr.splice(index, 1);
+            }
+            return arr;
+        };
+
+
+    var CountrySelector = function(id, options){
+        this.options = $.extend({}, defaults, options);
+        this.input = $('#' + (id || this.options.id).replace(/^#/i, ''));
+        this.box = $('#select-contry');
+        this.selected = [];
+        this._init();
+    };
+    CountrySelector.prototype = {
+        _init: function(){
+            this.titleElm = this.box.find('.cts-title');
+            this.closeBtn = this.box.find('.cts-close-btn');
+            this.clearBtn = this.box.find('.cts-clear-btn');
+            this.tabs = this.box.find('.cts-tabs>li');
+            this.selectedBox = this.box.find('.cts-selected');
+            this.searchBox = this.box.find('.cts-search');
+            this.searchInput = this.searchBox.find('.cts-search-input');
+            this.listBox = this.box.find('.cts-list');
+            this.pageBox = this.box.find('.cts-footer');
+            this._render();
+            this._addEvent();
+        },
+        _render: function(){
+            this._reset();
+            this.options.title && this.titleElm.html(this.options.title);
+            this.options.showSelectedBox && this.selectedBox.show();
+            this.options.showSearchBox && this.searchBox.show();
+            this._setPosition();
+            this._insertVals();
+            this.tabs.removeClass('cts-active');
+            this.tabs.eq(0).addClass('cts-active');
+            var list = this._getList(this.options.showHots ? 'HOT' : this.tabs.eq(0).attr('data-scope'));
+            this._insertList(list);
+        },
+        _setPosition: function(){
+            var offset = this.input[0].getBoundingClientRect() || this.input.offset();
+            this.box.css({
+                'left': offset.left,
+                'top': offset.top + this.input.height()
+            });
+        },
+        _addEvent: function(){
+            var self = this;
+            //选择标签 按照拼音
+            this.tabs.on('click', $.proxy(this, '_selectTabHandler'));
+            //分页
+            this.pageBox.undelegate('a', 'click', $.proxy(this, '_selectPageHandler'))
+                .delegate('a', 'click', $.proxy(this, '_selectPageHandler'));
+            //选择每个项
+            this.listBox.undelegate('input', 'change', $.proxy(this, '_selectCountryHandler'))
+                .delegate('input', 'change', $.proxy(this, '_selectCountryHandler'));
+            //删除已选择项
+            if(this.options.showSelectedBox){
+                this.selectedBox.undelegate('.cts-s-item>i', 'click', $.proxy(this, '_removeSelectedHandler'))
+                    .delegate('.cts-s-item>i', 'click', $.proxy(this, '_removeSelectedHandler'));
+                //全部清除已选项
+                this.clearBtn.on('click', $.proxy(this, '_clearSelectedHandler'));
+            }
+            //搜索
+            if(this.options.showSearchBox){
+                this.searchBox.find('input').on('keyup', $.proxy(this, '_searchInputHandler'));
+                this.searchBox.find('button').on('click', $.proxy(this, '_searchInputHandler'));
+            }
+            //关闭面板
+            this.closeBtn.on('click', $.proxy(this, 'close'));
+            this.options.onClick && this.input.on('click', function(evt){
+                evt.stopPropagation();
+                self.options.onClick.call(this, evt);
+                self.open();
+            });
+            this.box.on('mouseover', function(evt){
+                self._mouseover = true;
+            }).on('mouseout', function(evt){
+                self._mouseover = false;
+            });
+            $(document).on('click', function(){
+                if(self._mouseover) return;
+                self.close();
+            });
+            $(window).on('resize scroll', function(){
+                self._setPosition();
+            });
+
+        },
+        //根据已有值填充
+        _insertVals: function(){
+            var vs = this._getValue() ? this._getValue().split(/[,，\|-]+\s*/i) : null,
+                items = '',
+                country;
+            this.clearBtn.siblings().remove();
+            if('[object Array]' !== Object.prototype.toString.call(vs) || vs.length === 0)
+                return;
+            for(var i = 0, len = vs.length; i < len; ++i){
+                country = CountrySelector.getCountryForName(vs[i]);
+                this.selected.push(country);
+                items += '<div class="cts-s-item" data-code="'+ country['code'] +'">'+ vs[i] +' <i>X</i></div>';
+            }
+            this.options.showSelectedBox && this.clearBtn.before(items);
+        },
+        _insertList: function(list, regx){
+            if(!list || !list.length || list.length === 0)  return;
+            var item, lis = '',
+                i = 0, d = 0,
+                len = list.length,
+                pageTotal = Math.ceil(len / this.options.pageSize);
+            this.options.pageTotal = pageTotal;
+
+            for(; i < len; ++i){
+                item = list[i];
+                var code = item.code,
+                    checked = '',
+                    name = item.name,
+                    ename = item.ename;
+                if(this.selected.indexOf(item) !== -1){
+                    checked =  ' checked="checked"';
+                }
+                if(regx){
+                    if(regx.test(name)){
+                        name = name.replace(regx, function(match, keyword){
+                            return '<em>'+ keyword +'</em>';
+                        });
+                    }else if(regx.test(ename)){
+                        ename = ename.replace(regx, function(match, keyword){
+                            return '<em>'+ keyword +'</em>';
+                        });
+                    }
+
+                }
+                lis += '<li><input type="checkbox" id="'+ code +'" name="'+ code +'" data-code="'+ code +'"'+ checked +'/>\n' +
+                    '<label for="'+ code +'">'+ name +'('+ ename +')</label></li>';
+
+            }
+            this.listBox.html(lis);
+            this._showPageList();
+            //生产页码
+            lis = '';
+            for(i = 0; i < pageTotal; ++i){
+                d = i + 1;
+                lis += '<a href="javascript:void(0)" data-page="'+ d +'" '+ (i === 0 ? 'class="cts-active"' : '') +'>'+ d +'</a>';
+            }
+            this.pageBox.html(lis);
+
+        },
+        _showPageList: function(){
+            var lis = this.listBox.find('li');
+            lis.hide();
+            var prevs = this.options.pageSize * (this.options.page - 1),
+                limit = this.options.pageSize * this.options.page;
+            //this.listBox.find('li:lt('+ limit +')').css('display', 'inline-block');
+            for(var i = 0, len = lis.length; i < len; ++i){
+                if(i >= prevs && i < limit){
+                    $(lis[i]).css('display', 'inline-block');
+                }
+            }
+        },
+        _getValue: function(){
+            if(/(INPUT|TEXTAREA)/i.test(this.input[0].tagName)){
+                return this.input.val();
+            }else{
+                return this.text();
+            }
+        },
+        _setValue: function(value){
+            var vals;
+            if(value != null){
+                vals = value;
+            }else{
+                vals = [];
+                for(var i = 0, len = this.selected.length; i < len; ++i){
+                    vals.push(this.selected[i]['name']);
+                }
+                vals = vals.join('，');
+            }
+
+            if(/(INPUT|TEXTAREA)/i.test(this.input[0].tagName)){
+                this.input.val(vals);
+            }else{
+                this.text(vals);
+            }
+        },
+        //更新
+        _updateSelecteds: function(country, checked){
+            if(checked){
+                if(this.selected.indexOf(country) === -1){
+                    this.options.showSelectedBox && this.clearBtn.before('<div class="cts-s-item" data-code="'+ country.code +'">'+ country.name +' <i>X</i></div>');
+                    this.selected.push(country);
+                }
+            }else{
+                if(this.selected.indexOf(country) !== -1){
+                    this.options.showSelectedBox && this.selectedBox.find('[data-code="'+ country.code +'"]').remove();
+                    this.selected = arrRemove(this.selected, country);
+                }
+            }
+            //console.log(this.selected);
+        },
+        _updateList: function(country){
+            var lists = this.listBox.find('input:checked'),
+                input;
+            for(var i = 0, len = lists.length; i < len; ++i){
+                input = lists[i];
+                if(country.code == input.getAttribute('data-code')){
+                    input.removeAttribute('checked');
+                    input.checked = false;
+                    break;
+                }
+            }
+        },
+        _getList: function(scope){
+            var list = [];
+            if(scope == 'HOT'){
+                list = CountrySelector.getHots();
+            }else{
+                list = CountrySelector.getCountries(scope);
+            }
+            return list;
+        },
+        _reset: function(){
+            this.options.page = 1;
+            this.selected = [];
+        },
+        //handlers
+        _selectTabHandler: function(evt){
+            var target = evt.currentTarget || evt.target,
+                scope = target.getAttribute('data-scope');
+            this.tabs.removeClass('cts-active');
+            $(target).addClass('cts-active');
+            this.options.page = 1;
+            this.options.pageTotal = 0;
+            this._insertList(this._getList(scope));
+            this.options.onChangeTab.call(this, target);
+        },
+        _selectPageHandler: function(evt){
+            this.pageBox.find('a').removeClass('cts-active');
+            var target = evt.currentTarget || evt.target;
+            $(target).addClass('cts-active');
+            this.options.page = parseInt(target.getAttribute('data-page'), 10);
+            this._showPageList();
+            this.options.onChangePage.call(this, this.options.page);
+        },
+        _selectCountryHandler: function(evt){
+            var target = evt.currentTarget || evt.target;
+            var code = target.getAttribute('data-code');
+            var country = CountrySelector.getCountryForCode(code);
+            this._updateSelecteds(country, target.checked);
+            this._setValue();
+            this.options.onChange.call(this, country, target);
+        },
+        _removeSelectedHandler: function(evt){
+            var target = evt.currentTarget || evt.target,
+                parent = target.parentNode;
+            var code = parent.getAttribute('data-code');
+            var country = CountrySelector.getCountryForCode(code);
+            this._updateSelecteds(country, false);
+            this._setValue();
+            this._updateList(country);
+            this.options.onRemove.call(this, country, target);
+        },
+        _clearSelectedHandler: function(evt){
+            this.selected = [];
+            this._setValue('');
+            this.clearBtn.siblings().remove();
+            this.listBox.find('input').removeAttr('checked').prop('checked', false);
+            this.options.onClear.call(this);
+        },
+        //search
+        _searchInputHandler: function(evt){
+            if(!this.options.showSearchBox) return;
+            var val = this.searchInput.val();
+            //Enter key
+            if(!this.options.realSearch && evt.type === 'keyup' && evt.keyCode !== 13)  return;
+            if(!val || /^[^\w\u4E00-\u9FA5]/gi.test(val))   return;
+            var countries = CountrySelector.getCountryIndexOfName(val);
+            if(countries.length === 0) return;
+            //console.log(countries);
+
+            var len = countries.length;
+            this.options.page = 1;
+            this.options.pageTotal = Math.ceil(len / this.options.pageSize);
+            //console.log(this.options.pageTotal);
+
+            this.tabs.removeClass('cts-active');
+            this._insertList(countries, new RegExp('('+ val +')+?', 'i'));
+
+        },
+        open: function(){
+            if(this.box.css('display') == 'none'){
+                this._render();
+                this.box.show();
+                this.options.onOpen.call(this);
+            }
+        },
+        close: function(){
+            this.box.hide();
+            this.options.onClose.call(this);
+        }
+
+    };
+    CountrySelector.countries = _countries_;
+    CountrySelector.getCountryForName = function(name){
+        for(var i = 0, len = CountrySelector.countries.length; i < len; ++i){
+            if(CountrySelector.countries[i].name == name){
+                return CountrySelector.countries[i];
+            }
+        }
+    };
+    //模糊查找
+    CountrySelector.getCountryIndexOfName = function(name){
+        var ns = (name || '').split(''), rs = [], country, i = 0, ctsLen = CountrySelector.countries.length;
+        if(ns.length === 0) return;
+
+        for(i = 0; i < ctsLen; ++i){
+            country = CountrySelector.countries[i];
+            //单字符
+            if(ns.length === 1){
+                for(var j = 0; j < ns.length; ++j){
+                    //英文
+                    if(/^[a-zA-Z]/gi.test(ns[j]) && country.ename[0] == ns[j] && rs.indexOf(country) === -1){
+                        rs.push(country);
+                    }
+                    //中文
+                    else if(/^[\u4E00-\u9FA5]/gi.test(ns[j]) && country.name.indexOf(ns[j]) !== -1 && rs.indexOf(country) === -1){
+                        rs.push(country);
+                    }
+                }
+            }
+            //多个字符
+            else{
+                //英文
+                if(/^[a-zA-Z]+/gi.test(name) && country.ename.indexOf(name) !== -1 && rs.indexOf(country) === -1){
+                    rs.push(country);
+                }
+                //中文
+                else if(/^[\u4E00-\u9FA5]+/gi.test(name) && country.name.indexOf(name) !== -1 && rs.indexOf(country) === -1){
+                    rs.push(country);
+                }
+            }
+
+        }
+
+        return rs;
+    };
+    CountrySelector.getCountryForCode = function(code){
+        for(var i = 0, len = CountrySelector.countries.length; i < len; ++i){
+            if(CountrySelector.countries[i].code == code){
+                return CountrySelector.countries[i];
+            }
+        }
+    };
+    CountrySelector.getHots = function(){
+        var hots = [];
+        for(var i = 0, len = CountrySelector.countries.length; i < len; ++i){
+            if(CountrySelector.countries[i].hot == 'Y'){
+                hots.push(CountrySelector.countries[i]);
+            }
+        }
+        return hots;
+    };
+    //根据指定的firstChar查找
+    CountrySelector.getCountries = function(scope){
+        var cs = [];
+        //scope = scope.toLowerCase().split('-');
+        var regx = new RegExp('^['+ scope.toLowerCase() +']');
+        for(var i = 0, len = CountrySelector.countries.length; i < len; ++i){
+            regx.test(CountrySelector.countries[i].firstChar) && cs.push(CountrySelector.countries[i]);
+        }
+        return cs;
+    };
+
+    root.CountrySelector = CountrySelector;
+
+
+}).call(this);</script>
+
+    <script>
+        $(function(){
+            var $country = $('#country');
+            var countrySelector = new CountrySelector('#country', {
+                title: '请选择国家或地区',
+                //是否显示已选项面板
+                showSelectedBox: true,
+                //是否显示搜索功能
+                showSearchBox: true,
+                //实时搜索
+                realSearch: false,
+                pageSize: 10
+                //输入元素 click 事件，设置该属性,将处罚当前实例的open方法
+                //onClick: function(evt){
+                    //console.log(evt);
+                //}
+            });
+            $country.click(function(evt){
+                evt.stopPropagation(); //must
+                countrySelector.open();
+            });
+        });
+    </script>
+
+<!--build footer-->
+    <!--server loading-->
+    <div class="server-loading loading" id="request-tip" style="display: none;"></div>
+
+    <!--载入js-->
+    <script src="modules/main.js?_cmbx_=94d8986763"></script>
+    
+
+</body>
+</html>

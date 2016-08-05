@@ -1,0 +1,25 @@
+<include src="style.css"></include>
+<div class="sy-date-picker" id="{{ @id }}">
+    <div class="sy-date-header">
+        <ul>
+            <li class="sy-btn sy-prev">&lt;</li>
+            <li class="sy-current-date"></li>
+            <li class="sy-btn sy-next">&gt;</li>
+        </ul>
+    </div>
+    <div class="sy-date-body">
+        <ul class="sy-date-week">
+            <li class="sy-break">日</li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li class="sy-break">六</li>
+        </ul>
+        <ul class="sy-date-days"></ul>
+    </div>
+    <div class="sy-date-footer">
+        <span class="sy-time sy-none"></span>
+        <button class="sy-clear-btn">清空</button>
+        <button class="sy-now-btn">今天</button>
+    </div>
+    <div class="sy-years">
+        <ul></ul>
+    </div>
+</div>
+<include src="index.js"></include>

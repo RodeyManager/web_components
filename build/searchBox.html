@@ -1,0 +1,109 @@
+<!--build header-->
+<!DOCTYPE html>
+<html class="" style="">
+<head lang="en">
+    <title>searchBox</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="descriptions" charset="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link href="assets/css/app.min.css?_cmbx_=8df2534682" rel="stylesheet" media="screen">
+    <script src="assets/js/libs.js?_cmbx_=416ee13b71"></script>
+</head>
+<body class="" style="">
+
+    <style type="text/css" charset="utf-8">.search-box{
+    width: 380px;
+    height: 40px;
+    margin: 50px auto;
+    position: relative;
+    background: white;
+    border: 2px solid #3aaaf8;
+}
+.search-box > input,
+.search-box > button{
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    border: none;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.search-box > input{
+    width: 100%;
+    padding: 0 60px 0 6px;
+    background-color: white;
+}
+.search-box > button{
+    width: 60px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #3aaaf8;
+    color: white;
+    font-size: 16px;
+}
+.search-box > input:focus{
+    box-shadow: inset 0 0 4px 2px #DAEFFD;
+}
+.search-box > button:hover{
+    background-color: #4AB5FF;
+    text-shadow: 1px 1px 1px #848383;
+}</style>
+<div class="search-box" id="search-box">
+    <input type="text" placeholder="请输入您要搜索的关键字"/>
+    <button class="search-btn">搜索</button>
+</div>
+<script type="text/javascript" charset="utf-8" defer>;(function(){
+
+    var SearchBox = function(elementId){
+        this.box = document.getElementById(elementId);
+        this.input = this.box.getElementsByTagName('input')[0];
+        this.button = this.box.getElementsByTagName('button')[0];
+        this.value = this.input.value;
+    };
+    SearchBox.prototype = {
+        _addEvent: function(fn){
+            var self = this;
+            this.button.onclick = function(evt){
+                evt.preventDefault();
+                self.value = self.input.value;
+                'function' === typeof fn && fn.call(self, self.input.value);
+            };
+        },
+        search: function(fn){
+            this._addEvent(fn);
+        }
+    };
+    this.SearchBox = SearchBox;
+
+}).call(this);
+</script>
+
+    <script>
+        $(function(){
+            var searchBox = new SearchBox('search-box');
+            searchBox.search(function(text){
+                console.log(text);
+                //console.log(this);
+                //在这里发送请求...
+            });
+        });
+    </script>
+
+<!--build footer-->
+    <!--server loading-->
+    <div class="server-loading loading" id="request-tip" style="display: none;"></div>
+
+    <!--载入js-->
+    <script src="modules/main.js?_cmbx_=94d8986763"></script>
+    
+
+</body>
+</html>

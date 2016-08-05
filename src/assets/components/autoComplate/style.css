@@ -1,0 +1,43 @@
+.autocomplate-put{
+    width: 300px;
+    height: 40px;
+    padding: 0 5px;
+    border: solid 1px #00BCD4;
+    background-color: white;
+    text-align: left;
+    box-shadow: inset 0 0 3px 0px rgb(223, 247, 251);
+    color: #008192;
+}
+.autocomplate-put:hover,
+.autocomplate-put:focus,
+.autocomplate-put:active{
+    box-shadow: inset 0 0 3px 2px rgb(223, 247, 251);
+}
+
+.autocomplate-box{
+    width: 300px;
+    margin: -1px auto 0 auto;
+    border: solid 1px #00BCD4;
+}
+.autocomplate-box p {
+    width: 300px;
+    padding: 1px 5px;
+    margin: 0 auto;
+    text-align: left;
+    cursor: pointer;
+}
+.autocomplate-box p:hover{
+    background-color: #CCD2D2;
+}
+.autocomplate-box p span{
+    color: #A9CACE;
+}
+
+.autocomplate-put,
+.autocomplate-box p{
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}

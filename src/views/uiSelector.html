@@ -1,0 +1,144 @@
+<!--build header-->
+<include src="../assets/layout/header.html"
+         title="下拉选择组件">
+</include>
+
+<style>
+    .select{  position: relative; width: 300px; height: 40px; line-height: 40px; margin: 20px auto;
+        cursor: pointer; }
+    .select:before,
+    .select:after{
+        display: block;
+        width: 40px;
+        height: 38px;
+        position: absolute;
+        right: 1px;
+        top: 1px;
+    }
+    .select:before{
+        content: '';
+        background-color: #ECECEC;
+        border-left: solid 1px #DADADA;
+    }
+    .select:after{
+        content: '▼';
+        text-align: center;
+        color: #607D8B;
+        font-size: 14px;
+    }
+    input{
+        display: block; width: 100%; height: 100%; padding: 0 10px; margin: 0 auto; border: solid 1px #D4D4D4; color: #505050; font-size: 14px;
+    }
+    input:focus{ box-shadow: inset 0 0 2px 0 #C5EDFF; }
+    input::-webkit-input-placeholder{ color: #848383; }
+</style>
+    <div class="select" id="professtion-selector">
+        <input type="text" id="professtion" value="" placeholder="请选择职业" readonly/>
+    </div>
+    <div class="select" id="area-selector">
+        <input type="text" id="area" value="" placeholder="请选择服务地区" readonly/>
+    </div>
+    <div class="select" id="favoree-selector">
+        <input type="text" id="favoree" value="父亲，儿子" placeholder="请选择受益人" readonly/>
+    </div>
+    <include src="../assets/components/UISelector/style.css"></include>
+    <include src="../assets/components/UISelector/index.js"></include>
+
+    <script>
+        $(function(){
+
+            var professtions = [
+                { code: "K", name: "金融业" },
+                { code: "I", name: "水陆空交通运输业、邮政、水电、燃气、通讯、ＩＴ业" },
+                { code: "C1", name: "旅游、餐饮、零售" },
+                { code: "J", name: "文体业、教育业、新闻业、卫生保健业、清洁或家政服务业" },
+                { code: "A", name: "公务员" },
+                { code: "C4", name: "房屋中介、律师、公证人员、会计师" },
+                { code: "G", name: "矿石开采业、建筑工程业、装潢业" },
+                { code: "F", name: "农牧业、渔业、木材森林业" },
+                { code: "D4", name: "自营投资者" },
+                { code: "C2", name: "娱乐场所、博彩、影视娱乐业" },
+                { code: "H", name: "五金电器、日用品、化工建材等制造业" },
+                { code: "C3", name: "废品收购；艺术品收藏、拍卖、典当、贵金属和珠宝交易商" },
+                { code: "D1", name: "家庭主妇" },
+                { code: "D2", name: "离退休人员" },
+                { code: "D3", name: "除家庭主妇及离退休人员以外其它无固定职业人员" },
+                { code: "L", name: "成年学生（18周岁及以上）" },
+                { code: "B", name: "外国政要" },
+                { code: "E", name: "其他" }
+            ];
+
+            var uiSelector = new UISelector('#professtion', {
+                data: professtions,
+                //是否可以多选
+                multiple: false,
+                itemTemplate: '<li data-value="{@code}" title="{@name}">{@name}</li>',
+                onChange: function(item){}
+            });
+
+            $('#professtion-selector').click(function(evt){
+                evt.stopPropagation();
+                uiSelector.open();
+            });
+
+            //服务地区
+            var areas = [
+                { "key": "HNZZ0", "name": "河南省" },
+                { "key": "QDQD0", "name": "青岛市" },
+                { "key": "SZSZ0", "name": "深圳市" },
+                { "key": "SCCD0", "name": "四川省" },
+                { "key": "JSNJ0", "name": "江苏省" },
+                { "key": "HBWH0", "name": "湖北省" },
+                { "key": "LNSY0", "name": "辽宁省" },
+                { "key": "SDJN0", "name": "山东省" },
+                { "key": "ZJHZ0", "name": "浙江省" },
+                { "key": "GDGZ0", "name": "广东省" },
+                { "key": "SHSH0", "name": "上海市" },
+                { "key": "BJBJ0", "name": "北京市" },
+                { "key": "SAXA0", "name": "陕西省" },
+                { "key": "CQCQ0", "name": "重庆市" },
+                { "key": "HUCS0", "name": "湖南省" }
+            ];
+
+            var areaUISelector = new UISelector('#area', {
+                data: areas,
+                itemTemplate: '<li data-value="{@key}">{@name}</li>',
+                animate: 'fade'
+            });
+
+            $('#area-selector').click(function(evt){
+                evt.stopPropagation();
+                areaUISelector.open();
+            });
+
+            //服务地区
+            var favorees = [
+                { "key": "FQ", "name": "父亲" },
+                { "key": "MQ", "name": "母亲" },
+                { "key": "QZ", "name": "妻子" },
+                { "key": "XD", "name": "兄弟" },
+                { "key": "JM", "name": "姐妹" },
+                { "key": "EZ", "name": "儿子" },
+                { "key": "NE", "name": "女儿" }
+            ];
+
+            var favoreeUISelector = new UISelector('#favoree', {
+                data: favorees,
+                multiple: true,
+                itemTemplate: '<li data-value="{@key}">{@name}</li>',
+                animate: 'slide'
+            });
+
+            $('#favoree-selector').click(function(evt){
+                evt.stopPropagation();
+                favoreeUISelector.open();
+            });
+
+
+        });
+    </script>
+
+<!--build footer-->
+<include src="../assets/layout/footer.html"
+         view="">
+</include>

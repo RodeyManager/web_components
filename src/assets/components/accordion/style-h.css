@@ -1,0 +1,67 @@
+.accordion-box.accordion-h{
+    height: 200px;
+    margin: 10px auto;
+}
+.accordion-box.accordion-h ul li{
+    display: block;
+    height: 100%;
+    float: left;
+    font-size: 0;
+}
+.accordion-box.accordion-h ul:after,
+.accordion-box.accordion-h ul li:after{
+    content: "";
+    display: block;
+    visibility: hidden;
+    zoom: 1;
+    clear: both;
+}
+.accordion-box.accordion-h ul li > a{
+    position: relative;
+    display: block;
+    float: left;
+    width: 40px;
+    height: 200px;
+    line-height: 20px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #00a1a9;
+    color: white;
+    text-align: center;
+    border-left: solid 1px #13868c;
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    -ms-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+}
+.accordion-box.accordion-h ul li > a:hover,
+.accordion-box.accordion-h ul li.active > a{
+    background-color: #00D2DC;
+}
+.accordion-box.accordion-h ul li .accordion-content{
+    display: none;
+    width: 450px;
+    height: 200px;
+    background-color: #b3b3b3;
+    float: left;
+    overflow: hidden;
+}
+
+.accordion-box.accordion-h ul li .accordion-content > img{
+    display: block;
+    width: 450px;
+    height: 200px;
+}
+
+.accordion-box.accordion-h ul li > a.hot{
+    box-shadow: inset 0 -20px 1px 1px #FF7272;
+}
+.accordion-box.accordion-h ul li > a.hot:after{
+    content: "Hot";
+    color: white;
+    position: absolute;
+    bottom: 0;
+    left: 8px;
+    font-size: 10px;
+}

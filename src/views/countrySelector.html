@@ -1,0 +1,54 @@
+<!--build header-->
+<include src="../assets/layout/header.html"
+         title="国家选择组件">
+</include>
+
+<style>
+    #country{
+        display: block;
+        width: 300px;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 10px;
+        margin: 20px auto;
+        border: solid 1px #D4D4D4;
+        color: #505050;
+        font-size: 14px;
+    }
+    #country:focus{ box-shadow: inset 0 0 2px 0 #C5EDFF; }
+    #country::-webkit-input-placeholder{ color: #D4D4D4; }
+</style>
+    <input type="text" id="country" value="" placeholder="请选择国家或地区" readonly/>
+    <include src="../assets/components/countrySelector/style.css"></include>
+    <include src="../assets/components/countrySelector/index.html" id="select-contry"></include>
+    <script src="assets/js/plugins/country.js"></script>
+    <include src="../assets/components/countrySelector/index.js"></include>
+
+    <script>
+        $(function(){
+            var $country = $('#country');
+            var countrySelector = new CountrySelector('#country', {
+                title: '请选择国家或地区',
+                //是否显示已选项面板
+                showSelectedBox: true,
+                //是否显示搜索功能
+                showSearchBox: true,
+                //实时搜索
+                realSearch: false,
+                pageSize: 10
+                //输入元素 click 事件，设置该属性,将处罚当前实例的open方法
+                //onClick: function(evt){
+                    //console.log(evt);
+                //}
+            });
+            $country.click(function(evt){
+                evt.stopPropagation(); //must
+                countrySelector.open();
+            });
+        });
+    </script>
+
+<!--build footer-->
+<include src="../assets/layout/footer.html"
+         view="">
+</include>

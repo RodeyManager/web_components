@@ -1,0 +1,43 @@
+<!--build header-->
+<include src="../assets/layout/header.html"
+         title="拖动滑块组件">
+</include>
+    <style>
+        .v-bar-box{ position: fixed; top: 0; right: 100px; }
+    </style>
+    <include src="../assets/components/seekBar/index-hbar.html" id="seek-hbar"></include>
+    <div class="v-bar-box">
+        <include src="../assets/components/seekBar/index-vbar.html" id="seek-vbar"></include>
+    </div>
+    <include src="../assets/components/seekBar/index.js"></include>
+
+    <script>
+        $(function(){
+            var seekHBar = new SeekHBar('seek-hbar', {
+                isMark: true,
+                onStart: function(){
+                    //console.log('onStart: ', this);
+                },
+                onEnd: function(){
+                    //console.log('onEnd: ', this);
+                }
+            });
+            seekHBar.setLeft(230);
+
+            var seekVBar = new SeekVBar('seek-vbar', {
+                isMark: true,
+                onStart: function(){
+                    //console.log('onStart: ', this);
+                },
+                onEnd: function(){
+                    //console.log('onEnd: ', this);
+                }
+            });
+            seekVBar.setTop(120);
+        });
+    </script>
+
+<!--build footer-->
+<include src="../assets/layout/footer.html"
+         view="">
+</include>

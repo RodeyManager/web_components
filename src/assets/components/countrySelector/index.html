@@ -1,0 +1,26 @@
+<div class="cts-box cts-scale" id="{{ @id }}">
+    <div class="cts-header">
+        <h5 class="cts-title">请选择国家或地区</h5>
+        <i class="cts-close-btn">&times;</i>
+    </div>
+    <div class="cts-body">
+        <div class="cts-selected">
+            <div class="cts-clear-btn">全部清除</div>
+        </div>
+        <div class="cts-search">
+            <label for="cts-search">名称：</label>
+            <input type="text" id="cts-search" name="cts-search" class="cts-search-input" placeholder="请输入国家或地区名称"/>
+            <button class="cts-search-btn">&gt;</button>
+        </div>
+        <ul class="cts-tabs">
+            <li data-scope="HOT" class="cts-active">热门</li>
+            <li data-scope="A-G">ABCDEFG</li>
+            <li data-scope="H-N">HIJKLMN</li>
+            <li data-scope="O-T">OPQRST</li>
+            <li data-scope="U-Z">UVWXYZ</li>
+        </ul>
+        <ul class="cts-list"></ul>
+    </div>
+    <div class="cts-footer">
+    </div>
+</div>

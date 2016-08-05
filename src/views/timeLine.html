@@ -1,0 +1,27 @@
+<!--build header-->
+<include src="../assets/layout/header.html"
+         title="时间轴组件">
+</include>
+
+    <include src="../assets/components/timeLine/index.html" id="time-line"></include>
+
+    <script>
+        $(function(){
+            var timeLine = new TimeLine('time-line', {
+                selectYearClass: 'on-active-year',
+                selectMonthClass: 'on-active-month',
+                onSelect: function(year, month, date, element){
+                    console.log(year, month, date);
+                    console.log(element);
+                },
+                onSelectYear: function(){
+                    console.log(arguments);
+                }
+            });
+        });
+    </script>
+
+<!--build footer-->
+<include src="../assets/layout/footer.html"
+         view="">
+</include>

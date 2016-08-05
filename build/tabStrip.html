@@ -1,0 +1,282 @@
+<!--build header-->
+<!DOCTYPE html>
+<html class="" style="">
+<head lang="en">
+    <title>选项卡组件</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="descriptions" charset="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link href="assets/css/app.min.css?_cmbx_=8df2534682" rel="stylesheet" media="screen">
+    <script src="assets/js/libs.js?_cmbx_=416ee13b71"></script>
+</head>
+<body class="" style="">
+
+    <style type="text/css" charset="utf-8">.tab-strip-box{
+    padding: 0;
+    margin: 50px auto;
+    width: 600px;
+    position: relative;
+    overflow: hidden;
+}
+.tab-strip-box.horizontal .tab-nav-box{
+    font-size: 0;
+    border-bottom: solid 1px #DADADA;
+    position: relative;
+}
+.tab-strip-box.horizontal .tab-nav-box span{
+    display: inline-block;
+    padding: 0 20px;
+    margin: 0 10px -1px 0;
+    height: 40px;
+    line-height: 40px;
+    background-color: #ECECEC;
+    border: solid 1px #DADADA;
+    border-bottom: none;
+    text-align: center;
+    text-shadow: 1px 1px 1px white;
+    font-size: 16px;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.tab-strip-box.horizontal .tab-nav-box span:hover,
+.tab-strip-box.horizontal .tab-nav-box span.active{
+    background-color: white;
+    border-top: 1px solid #03A9F4;
+    box-shadow: inset 0 1px 1px 0 #BEEBFF;
+    color: #03A9F4;
+}
+.tab-strip-box.horizontal .tab-content-box{
+    padding: 10px;
+    border: solid 1px #dadada;
+    border-top: none;
+    position: relative;
+    overflow: hidden;
+}
+.tab-strip-box.horizontal .tab-content{
+    display: none;
+    position: relative;
+    overflow: auto;
+}</style>
+    <style type="text/css" charset="utf-8">.tab-strip-box{
+    padding: 0;
+    margin: 50px auto 0 auto;
+    width: 600px;
+    position: relative;
+    overflow: hidden;
+}
+.tab-strip-box.vertical .tab-nav-box{
+    width: 120px;
+    height: 240px;
+    font-size: 0;
+    border-right: solid 1px #DADADA;
+    position: relative;
+}
+.tab-strip-box.vertical .tab-nav-box span{
+    display: block;
+    width: 100%;
+    padding: 0 20px;
+    margin: -1px 0 0 0;
+    height: 40px;
+    line-height: 40px;
+    background-color: #ECECEC;
+    border: solid 1px #DADADA;
+    border-right: none;
+    text-align: center;
+    text-shadow: 1px 1px 1px white;
+    font-size: 16px;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.tab-strip-box.vertical .tab-nav-box span:first-child{
+    margin-top: 0;
+}
+.tab-strip-box.vertical .tab-nav-box span:hover,
+.tab-strip-box.vertical .tab-nav-box span.active{
+    width: 121px;
+    background-color: white;
+    border-left: 1px solid #03a9f4;
+    box-shadow: inset 1px 0 1px 0 #beebff;
+    color: #03a9f4;
+    border-right: none;
+    text-indent: 20px;
+}
+.tab-strip-box.vertical .tab-content-box{
+    width: 480px;
+    height: 100%;
+    padding: 10px;
+    border: solid 1px #dadada;
+    border-left: 0;
+    position: absolute;
+    left: 120px;
+    top: 0;
+    overflow: hidden;
+}
+.tab-strip-box.vertical .tab-content{
+    display: none;
+    position: relative;
+    overflow: auto;
+}</style>
+    <div class="tab-strip-box horizontal" id="htab-strip">
+    <div class="tab-nav-box">
+        <span>选项卡1</span>
+        <span>选项卡2</span>
+        <span>选项卡3</span>
+        <span>选项卡4</span>
+    </div>
+    <div class="tab-content-box">
+        <div class="tab-content">
+            <h2>招商信诺一路助跑 首届莞马落幕</h2>
+            <p>一直以来，我们都在倡导健康运动与健康生活理念，此次赞助莞马也是希望能号召更多的人关注自己的健康，或许在大多数人的眼中，保险是在风险事故发生后对事主的补偿，不过我们也希望号召更多人在疾病...</p>
+        </div>
+        <div class="tab-content">
+            <img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png" width="50%" alt=""/>
+        </div>
+        <div class="tab-content">
+            <ul>
+                <li>首页</li>
+                <li>个人保险</li>
+                <li>团体保险</li>
+                <li>客户服务</li>
+                <li>关于我们</li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <img src="http://www.cignacmb.com/sites/default/themes/cigna_cmc/images/banner_20150604_01.jpg" width="100%" alt=""/>
+        </div>
+    </div>
+</div>
+    <div class="tab-strip-box vertical" id="vtab-strip">
+    <div class="tab-nav-box">
+        <span>选项卡1</span>
+        <span>选项卡2</span>
+        <span>选项卡3</span>
+        <span>选项卡4</span>
+    </div>
+    <div class="tab-content-box">
+        <div class="tab-content">
+            <h2>招商信诺一路助跑 首届莞马落幕</h2>
+            <p>一直以来，我们都在倡导健康运动与健康生活理念，此次赞助莞马也是希望能号召更多的人关注自己的健康，或许在大多数人的眼中，保险是在风险事故发生后对事主的补偿，不过我们也希望号召更多人在疾病...</p>
+        </div>
+        <div class="tab-content">
+            <img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png" width="50%" alt=""/>
+        </div>
+        <div class="tab-content">
+            <ul>
+                <li>首页</li>
+                <li>个人保险</li>
+                <li>团体保险</li>
+                <li>客户服务</li>
+                <li>关于我们</li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <img src="http://www.cignacmb.com/sites/default/themes/cigna_cmc/images/banner_20150604_01.jpg" width="100%" alt=""/>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript" charset="utf-8" defer>/**
+ * Created by r9luox on 2016/7/7.
+ * 选项卡组件
+ */
+
+;(function(){
+
+    var root = this,
+        defaults = {
+            //选项卡方向
+            direction: 'horizontal',
+            //hover到tab上时是否触发
+            hover: false,
+            onSelect: function(){}
+        };
+    $(function(){
+
+        var TabStrip = function(id, options){
+            this.options = $.extend({}, defaults, options);
+            this.index = this.options.index || 1;
+            this.box = $('#' + (id || this.options.id).replace(/^#*/i, ''));
+            this._init();
+        };
+        TabStrip.prototype = {
+            _init: function(){
+                this.tabNavs = this.box.find('.tab-nav-box>span');
+                this.tabContens = this.box.find('.tab-content-box>div');
+                this._onActive();
+                this._addEvent();
+            },
+            _addEvent: function(){
+                this.tabNavs.on('click', $.proxy(this, '_onSelect'));
+                this.options.hover && this.tabNavs.hover($.proxy(this, '_onSelect'));
+            },
+            _onSelect: function(evt){
+                var self = this;
+                var $target = $(evt.currentTarget || evt.target);
+                $.each(this.tabNavs, function(index, nav){
+                    if($target.html() == $(nav).html()){
+                        self.index = index + 1;
+                    }
+                });
+                this._onActive();
+                this.options.onSelect.call(this, $target);
+            },
+            _onActive: function(){
+                var index = this.index - 1;
+                this.tabNavs.removeClass('active');
+                this.tabNavs.eq(index).addClass('active');
+                this.tabContens.hide();
+                this.tabContens.eq(index).show();
+            },
+
+            //---------Public-----------------
+            setIndex: function(index){
+                index = isNaN(parseInt(index)) ? 0 : parseInt(index);
+                this.index = index;
+                this._onActive();
+            }
+        };
+
+        root.TabStrip = TabStrip;
+    });
+
+}).call(this);
+</script>
+
+    <script>
+        $(function(){
+            var htabStrip = new TabStrip('htab-strip', {
+                index: 2,
+                hover: false,
+                onSelect: function(target){
+                    //console.log(target);
+                }
+            });
+            var vtabStrip = new TabStrip('vtab-strip', {
+                hover: true,
+                onSelect: function(target){
+                    //console.log(target);
+                }
+            });
+            vtabStrip.setIndex(3);
+        });
+    </script>
+
+<!--build footer-->
+    <!--server loading-->
+    <div class="server-loading loading" id="request-tip" style="display: none;"></div>
+
+    <!--载入js-->
+    <script src="modules/main.js?_cmbx_=94d8986763"></script>
+    
+
+</body>
+</html>
